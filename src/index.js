@@ -6,13 +6,17 @@ import routes from './routes';
 
 import { Provider } from 'react-redux';
 
-//import { createStore, applyMiddleware } from 'redux';
-//import rootReducer from './reducers';
+import ReduxPromise from 'redux-promise'
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers';
+import { fetchCards } from './actions'
 
+const store = createStore(rootReducer, applyMiddleware(ReduxPromise))
 
+store.dispatch(fetchCards())
 
 ReactDOM.render(
-  <Provider >
+  <Provider store = {store}>
     <Router history={browserHistory} routes={routes} />
   </Provider>, document.getElementById('root')
 );
