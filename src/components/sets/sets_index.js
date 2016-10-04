@@ -18,10 +18,15 @@ class CardSetsIndex extends React.Component {
 
 	render(){
 		return(
-			<div className='col-md-4'>
-				<ul>
-					{this.props.cardsets.map( set => this.setPanel(set) )}
-				</ul>
+			<div>
+				<div className='col-md-4'>
+					<ul>
+						{this.props.cardsets.map( set => this.setPanel(set) )}
+					</ul>
+				</div>
+				<div className='col-md-8'>
+					{this.props.children}
+				</div>
 			</div>
 		)
 	}
