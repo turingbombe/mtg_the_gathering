@@ -2,6 +2,7 @@ import React from 'react'
 import * as actions from '../actions/index'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 
 class SignUp extends React.Component {
 
@@ -10,6 +11,8 @@ class SignUp extends React.Component {
 
     const userInfo = {first_name: this.refs.firstName.value, last_name: this.refs.lastName.value, email: this.refs.email.value, password: this.refs.password.value, password_confirmation: this.refs.passwordConfirmation.value}
     this.props.actions.newUser(userInfo)
+    browserHistory.push(`/users/${this.props.users.id}`)
+
   }
 
   render() {
@@ -35,6 +38,10 @@ class SignUp extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {actions: bindActionCreators(actions, dispatch)}
+}
+
+function mapStateToProps(state) {
+  return {users: state.users}
 }
 
 const componentCreator = connect(null, mapDispatchToProps)

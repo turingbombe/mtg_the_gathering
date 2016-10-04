@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NavBar from './nav_bar'
 import SignUp from './sign_up'
+import {Link} from 'react-router';
+
 
 class App extends Component {
   render() {
@@ -8,9 +10,8 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <div className="container">
-          <h1> Yes</h1>
-          <SignUp />
-          {this.props.children}
+        <Link to="/cardsets">MULTIVERSE</Link>
+          <div>{this.props.children}</div>
         </div>
       </div>
     );
