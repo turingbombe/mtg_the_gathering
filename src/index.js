@@ -16,7 +16,7 @@ const store = createStore(rootReducer, applyMiddleware(ReduxPromise))
 store.dispatch(fetchCards())
 
 ReactDOM.render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <Router history={browserHistory} routes={routes} />
   </Provider>, document.getElementById('root')
 );
