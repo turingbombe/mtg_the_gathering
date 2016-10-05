@@ -14,6 +14,7 @@ class CardDisplay extends React.Component {
 		this.props.actions.fetchCard(id)
 	}
 
+
 	render(){
 		return(
 			<div className="panel panel-default col-md-5">
