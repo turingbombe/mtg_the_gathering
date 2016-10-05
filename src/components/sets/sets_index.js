@@ -33,7 +33,6 @@ class CardSetsIndex extends React.Component {
 }
 
 function mapStateToProps(state){
-	debugger
   return {
     cardsets: state.cardsets
   }

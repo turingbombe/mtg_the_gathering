@@ -1,5 +1,17 @@
 const BASE_URL = 'http://localhost:3000/api/v1'
 
+export function fetchCard(id){
+	const card = fetch(`${BASE_URL}/cards/${id}`).then(response =>{
+			return response.json();
+		}).then(cardPayload =>{
+			return cardPayload;
+		})
+	return {
+		type: 'FETCH_CARD',
+		payload: card
+	}
+}
+
 export function fetchCardSets(){
 	const cardsets = fetch(`${BASE_URL}/card_sets/`).then(response =>{
 			return response.json();
