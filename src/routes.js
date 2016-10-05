@@ -12,7 +12,7 @@ export default (
 	<Route path="/" component={App}>
 		<Route path="/cardsets" component={SetsIndex}>
 			<Route path="/cardsets/:id" component={CardSetsShow} />
-			<Route path='/cards/:id' component= {CardShow} />
+			<Route path='/cards/:id' component={CardShow} />
 		</Route>
 		<Route path="/users/:id" component={UserShow} />
 		<Route path="/signup" component={SignUp} />

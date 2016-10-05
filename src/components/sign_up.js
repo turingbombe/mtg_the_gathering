@@ -11,8 +11,6 @@ class SignUp extends React.Component {
 
     const userInfo = {first_name: this.refs.firstName.value, last_name: this.refs.lastName.value, email: this.refs.email.value, password: this.refs.password.value, password_confirmation: this.refs.passwordConfirmation.value}
     this.props.actions.newUser(userInfo)
-    browserHistory.push(`/users/${this.props.users.id}`)
-
   }
 
   render() {

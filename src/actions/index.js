@@ -34,7 +34,6 @@ export function newUser(newUserInfo) {
   }).then(newUserPayload => {
     return newUserPayload
   })
-
   return {type: 'ADD_USER', payload: newUser}
 }
 

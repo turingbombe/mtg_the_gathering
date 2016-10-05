@@ -18,10 +18,10 @@ class CardDisplay extends React.Component {
 	render(){
 		return(
 			<div className="panel panel-default col-md-5">
-				<div className = "panel-heading"><Link to={`/cards/${this.props.card.id}`} onClick={this.fetchSelectedCard(this.props.card.id)}>{this.props.card.name}</Link>
+				<div className="panel-heading"><Link to={`/cards/${this.props.card.id}`} onClick={this.fetchSelectedCard(this.props.card.id)}>{this.props.card.name}</Link>
 				</div>
-				<div className = "panel-body">
-					<div className ='row'>{this.props.card.mana_cost} || {this.props.card.colors} || {this.props.card.rarity}</div>
+				<div className="panel-body">
+					<div className='row'>{this.props.card.mana_cost} || {this.props.card.colors} || {this.props.card.rarity}</div>
 				</div>
 			</div>
 		)
