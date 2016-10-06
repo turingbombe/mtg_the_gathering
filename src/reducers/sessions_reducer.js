@@ -1,6 +1,7 @@
 import {browserHistory} from 'react-router'
+import initialState from './initial_state'
 
-export default function sessions_reducer(state=[],action){
+export default function sessions_reducer(state= initialState.session,action){
 	switch(action.type){
 		case 'LOG_IN_SUCCESS':
 			sessionStorage.setItem('token', action.payload.jwt)
