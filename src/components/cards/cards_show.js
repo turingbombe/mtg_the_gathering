@@ -25,6 +25,7 @@ function CardShow(props){
 }
 
 function mapStateToProps(state, ownProps){
+
 	if (state.cards.length > 0){
 		const card= state.cards.find(card => {return card.id == ownProps.params.id})
 		return {card: card}

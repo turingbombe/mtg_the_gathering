@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 class UserShow extends React.Component {
   render(){
-    console.log("rendering component in string", this.props.user)
+    debugger
     return (
       <div>
         <h1>Welcome to The Gathering, {this.props.user.first_name}</h1>
