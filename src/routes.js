@@ -1,15 +1,18 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, IndexRoute} from 'react-router';
 
 import App from './components/App';
+import WelcomeCoverflow from './components/welcome_coverflow'
 import SignUp from './components/sign_up'
 import UserShow from './components/users/user_show'
 import SetsIndex from './components/sets/sets_index'
 import CardSetsShow from './components/sets/sets_show'
 import CardShow from './components/cards/cards_show'
 
+
 export default (
 	<Route path="/" component={App}>
+		<IndexRoute component= {WelcomeCoverflow} />
 		<Route path="/cardsets" component={SetsIndex}>
 			<Route path="/cardsets/:id" component={CardSetsShow} />
 			<Route path='/cards/:id' component={CardShow} />
@@ -18,3 +21,4 @@ export default (
 		<Route path="/signup" component={SignUp} />
 	</Route>
 )
+		
