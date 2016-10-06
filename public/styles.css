@@ -1,0 +1,9 @@
+#sets_index {
+  overflow: scroll;
+  height: 500px;
+}
+
+#set_cards {
+  overflow: scroll;
+  height: 500px;
+}

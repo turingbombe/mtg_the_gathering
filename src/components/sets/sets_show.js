@@ -6,8 +6,12 @@ import CardDisplay from '../cards/card_display'
 function CardSetsShow(props){
 	return(
 		<div>
-			<h1>{props.set.name}</h1>
-			<div className="panel-group"> {props.set.cards.map(cardToShow => <CardDisplay card={cardToShow}/>)} </div>
+			<div className='panel panel-default col-md-12'>
+				<div className='panel-heading'>{props.set.name}</div>
+					<div className="panel-body" id='set_cards'>
+						{props.set.cards.map(cardToShow => <CardDisplay card={cardToShow}/>)}
+					</div>
+			</div>
 		</div>
 	)
 }
