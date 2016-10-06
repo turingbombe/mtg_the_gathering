@@ -77,3 +77,7 @@ export function fetchUsers(){
 		payload: users
 	}	
 }
+
+export function signOut() {  
+  return {type: 'LOG_OUT'};
+}
