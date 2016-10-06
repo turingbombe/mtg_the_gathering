@@ -5,6 +5,7 @@ export default function sessions_reducer(state=[],action){
 		case 'LOG_IN_SUCCESS':
 			sessionStorage.setItem('token', action.payload.jwt)
 			browserHistory.push(`/users/${action.payload.user_id}`)
+			return !!sessionStorage.jwt
 		default:
 			return state
 	}
