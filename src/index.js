@@ -9,12 +9,12 @@ import { Provider } from 'react-redux';
 import ReduxPromise from 'redux-promise'
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers';
-import { fetchCards, fetchCardSets } from './actions'
+import { fetchCards, fetchCardSets, fetchUsers} from './actions'
 
 const store = createStore(rootReducer, applyMiddleware(ReduxPromise))
 
 store.dispatch(fetchCards())
-
+store.dispatch(fetchUsers())
 store.dispatch(fetchCardSets())
 
 ReactDOM.render(

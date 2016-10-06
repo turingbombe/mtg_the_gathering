@@ -7,6 +7,7 @@ export default function NavBar(props){
       <div className='navbar-header'>
         <Link to="/" className='navbar-brand'>Magic The Gathering: The Gathering</Link>
         <Link to="/signup" className='navbar-item'>Sign Up</Link>
+        <Link to="/signin" className ='navbar-item'>Sign In</Link>
 
       </div>
     </nav>

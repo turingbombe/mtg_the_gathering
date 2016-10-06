@@ -49,3 +49,30 @@ export function fetchCards(){
 		payload: cards
 	}
 }
+
+export function signIn(userInfo){
+  const loggedInUser = fetch('http://localhost:3000/api/v1/sessions', {
+    method: 'POST',
+    headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+    body: JSON.stringify({auth: userInfo})
+  }).then(response => {
+    return response.json()
+  }).then(userPayload => {
+    return userPayload
+  }).catch(error => {
+  })
+
+  return{ type: 'LOG_IN_SUCCESS', payload: loggedInUser}	
+}
+
+export function fetchUsers(){
+	const users = fetch(`${BASE_URL}/users/`).then(response =>{
+			return response.json();
+		}).then(usersPayload =>{
+			return usersPayload;
+		})
+	return {
+		type: 'FETCH_USERS',
+		payload: users
+	}	
+}

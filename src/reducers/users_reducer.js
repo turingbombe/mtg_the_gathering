@@ -6,7 +6,8 @@ export default function users_reducer(state=[], action){
 			sessionStorage.setItem("token", action.payload.jwt)
 			browserHistory.push(`/users/${action.payload.user.id}`)
 			return [...state, action.payload.user];
-
+		case 'FETCH_USERS':
+			return [...state, ...action.payload]
 		default:
 			return state;
 	}
