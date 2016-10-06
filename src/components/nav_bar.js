@@ -1,10 +1,20 @@
 import React from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
+import { bindActionCreators } from 'redux'
+import * as actions from '../actions'
 
 class NavBar extends React.Component{
+   constructor(){
+   	super()
+   }
+
+   logOut(event) {
+    event.preventDefault();
+    this.props.actions.signOut();
+  } 
   render(){
-  	if (this.props.logged_in){
+  	if (!this.props.logged_in){
 	  return (
 	    <nav className='navbar navbar-inverse'>
 	      <div className='navbar-header'>
@@ -15,21 +25,25 @@ class NavBar extends React.Component{
 	    </nav>
 	  )
 	}else{
-	  return (
+	  return(
 	    <nav className='navbar navbar-inverse'>
 	      <div className='navbar-header'>
 	        <Link to="/" className='navbar-brand'>Magic The Gathering: The Gathering</Link>
 	      </div>
-	      <p className='navbar-item text-right' style={{color: "red"}}>LOGGED IN</p>
+          <Link to="/" onClick={this.logOut.bind(this)} className='navbar-item text-right'>log out</Link>
 	    </nav>
-	    )
+	   )
 	}
   }
 }
 
-function mapStateToProps(state, ownProps) {  
+function mapStateToProps(state) {  
   return {logged_in: !!sessionStorage.jwt};
 }
 
-const componentCreator = connect(mapStateToProps)
+function mapDispatchToProps(dispatch){
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(NavBar)
