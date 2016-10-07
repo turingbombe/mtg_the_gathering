@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux'
 class CardShowModal extends React.Component {
   constructor(){
     super();
+
     this.close = this.close.bind(this)
     this.open = this.open.bind(this)
     this.state = {
@@ -18,14 +19,14 @@ class CardShowModal extends React.Component {
 
   logInButton(){
     if(this.props.logged_in){
-      return <button className="btn-default btn-sm" onClick={this.addCollection}>Add to your Collection</button>
+      return <button className="btn-default btn-sm" onClick={()=>this.addCollection(this.props.card.id).bind(this)}>Add to your Collection</button>
     }else{
       return <p>Sign Up to start your collection</p>
     }
   }
 
-  addCollection(){
-    console.log('Hit addCollection')
+  addCollection(card_id){
+    this.props.actions.addCardToCollection(card_id)
   }
 
   close() {
@@ -84,5 +85,5 @@ function mapDispatchToProps(dispatch){
   return {actions: bindActionCreators(actions, dispatch)}
 }
 
-const componentCreator = connect(mapStateToProps)
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CardShowModal)
