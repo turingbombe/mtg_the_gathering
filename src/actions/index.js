@@ -1,9 +1,11 @@
 const BASE_URL = 'http://localhost:3000/api/v1'
 
 export function fetchCard(id){
+	console.log("fetch card action", id)
 	const card = fetch(`${BASE_URL}/cards/${id}`).then(response =>{
 			return response.json();
 		}).then(cardPayload =>{
+			console.log("action payload", cardPayload)
 			return cardPayload;
 		})
 	return {
@@ -48,7 +50,7 @@ export function signIn(userInfo){
   }).catch(error => {
   })
 
-  return{ type: 'LOG_IN_SUCCESS', payload: loggedInUser}	
+  return{ type: 'LOG_IN_SUCCESS', payload: loggedInUser}
 }
 
 export function newUser(newUserInfo) {
@@ -61,11 +63,11 @@ export function newUser(newUserInfo) {
   }).then(newUserPayload => {
     return newUserPayload
   })
-  
+
   return {type: 'ADD_USER', payload: newUser}
 }
 
-export function signOut() {  
+export function signOut() {
   return {type: 'LOG_OUT'};
 }
 
@@ -78,7 +80,7 @@ export function fetchUsers(){
 	return {
 		type: 'FETCH_USERS',
 		payload: users
-	}	
+	}
 }
 
 export function addCardToCollection(card_id){
@@ -94,4 +96,3 @@ export function addCardToCollection(card_id){
 
     return {type:'ADD_CARD_TO_COLLECTION', payload: updatedCollection}
 }
-

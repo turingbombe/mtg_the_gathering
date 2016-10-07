@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-import * as actions from '../../actions/index'
-import { bindActionCreators } from 'redux'
 
 class CardShowModal extends React.Component {
   constructor(){
@@ -42,28 +40,26 @@ class CardShowModal extends React.Component {
       <div>
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
-            <Modal.Title>{this.props.card.name}</Modal.Title>
+            <Modal.Title>modal title</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div className='col-md-4'>
+            <div className='col-xs-6'>
       				<img src={this.props.card.image_url} className='img-responsive' />
               {this.logInButton()}
       			</div>
-      			<div className='col-md-4'>
+      			<div className='col-xs-6'>
       				<ul className='list-group'>
-      					<li className='list-group-item'>Name: {this.props.card.name}</li>
-      					<li className='list-group-item'>Multiverse ID: {this.props.card.multiverse_id}</li>
       					<li className='list-group-item'>Rarity: {this.props.card.rarity}</li>
       					<li className='list-group-item'>Mana Cost: {this.props.card.mana_cost}</li>
       					<li className='list-group-item'>CMC: {this.props.card.cmc}</li>
       					<li className='list-group-item'>Power: {this.props.card.power}</li>
       					<li className='list-group-item'>Toughness: {this.props.card.toughness}</li>
-                <li className='list-group-item'>Flavor: {this.props.card.flavor}</li>
+                <li className='list-group-item'>Fl2avor: {this.props.card.flavor}</li>
+
       				</ul>
       			</div>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>

@@ -3,8 +3,6 @@ import * as actions from '../../actions/index'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {Link} from 'react-router'
-import { Modal } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 
 class CardDisplay extends React.Component {
 	constructor(props){
@@ -14,8 +12,8 @@ class CardDisplay extends React.Component {
 		this.imagePaths = this.imagePaths.bind(this)
 	}
 
-	fetchSelectedCard(id) {
-		this.props.actions.fetchCard(id)
+	fetchSelectedCard() {
+		this.props.actions.fetchCard(this.props.card.id)
 	}
 
 	imagePaths(){
@@ -57,7 +55,7 @@ class CardDisplay extends React.Component {
 		return(
 		<div>
 			<div className="panel panel-default col-md-5">
-				<div className="panel-heading"><Link to={`/cards/${this.props.card.id}`} onClick={this.fetchSelectedCard(this.props.card.id)}>{this.props.card.name}</Link>
+				<div className="panel-heading"><Link to={`/cards/${this.props.card.id}`} onClick={this.fetchSelectedCard}>{this.props.card.name}</Link>
 				</div>
 				<div className="panel-body">
 					<div className='row'> {this.manaConverter()} | {this.props.card.rarity}</div>
@@ -68,9 +66,13 @@ class CardDisplay extends React.Component {
 	}
 }
 
+function mapStateToProps(state, ownProps){
+	return {card: ownProps.card}
+}
+
 function mapDispatchToProps(dispatch) {
   return {actions: bindActionCreators(actions, dispatch)}
 }
 
-const componentCreator = connect(null, mapDispatchToProps)
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CardDisplay);
