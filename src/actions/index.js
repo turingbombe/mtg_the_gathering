@@ -82,3 +82,17 @@ export function fetchUsers(){
 		payload: users
 	}
 }
+
+export function addCardToCollection(card_id){
+	const updatedCollection = fetch('http://localhost:3000/api/v1/ownerships/', {
+    method: 'POST',
+    headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+    body: JSON.stringify({card_id: card_id})
+  	}).then(response => {
+      return response.json();
+    }).catch(error => {
+      return error;
+    });
+
+    return {type:'ADD_CARD_TO_COLLECTION', payload: updatedCollection}
+}
