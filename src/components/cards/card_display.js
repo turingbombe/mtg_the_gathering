@@ -3,6 +3,8 @@ import * as actions from '../../actions/index'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {Link} from 'react-router'
+import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class CardDisplay extends React.Component {
 	constructor(props){
@@ -51,9 +53,9 @@ class CardDisplay extends React.Component {
 		})
 	}
 
-
 	render(){
 		return(
+		<div>
 			<div className="panel panel-default col-md-5">
 				<div className="panel-heading"><Link to={`/cards/${this.props.card.id}`} onClick={this.fetchSelectedCard(this.props.card.id)}>{this.props.card.name}</Link>
 				</div>
@@ -61,6 +63,7 @@ class CardDisplay extends React.Component {
 					<div className='row'> {this.manaConverter()} | {this.props.card.rarity}</div>
 				</div>
 			</div>
+		</div>
 		)
 	}
 }
