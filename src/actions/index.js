@@ -26,21 +26,6 @@ export function fetchCardSets(){
 	}
 }
 
-export function newUser(newUserInfo) {
-  const newUser = fetch('http://localhost:3000/api/v1/users', {
-    method: 'POST',
-    headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-    body: JSON.stringify({user: newUserInfo})
-  }).then(response => {
-    return response.json()
-  }).then(newUserPayload => {
-    return newUserPayload
-  })
-
-  return {type: 'ADD_USER', payload: newUser}
-}
-
-
 export function fetchCards(){
 	const cards = fetch(`${BASE_URL}/cards/`).then(response =>{
 			return response.json();
@@ -68,6 +53,24 @@ export function signIn(userInfo){
   return{ type: 'LOG_IN_SUCCESS', payload: loggedInUser}
 }
 
+export function newUser(newUserInfo) {
+  const newUser = fetch('http://localhost:3000/api/v1/users', {
+    method: 'POST',
+    headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+    body: JSON.stringify({user: newUserInfo})
+  }).then(response => {
+    return response.json()
+  }).then(newUserPayload => {
+    return newUserPayload
+  })
+
+  return {type: 'ADD_USER', payload: newUser}
+}
+
+export function signOut() {
+  return {type: 'LOG_OUT'};
+}
+
 export function fetchUsers(){
 	const users = fetch(`${BASE_URL}/users/`).then(response =>{
 			return response.json();
@@ -78,8 +81,4 @@ export function fetchUsers(){
 		type: 'FETCH_USERS',
 		payload: users
 	}
-}
-
-export function signOut() {
-  return {type: 'LOG_OUT'};
 }
