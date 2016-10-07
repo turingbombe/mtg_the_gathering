@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux'
@@ -35,6 +35,10 @@ class NavBar extends React.Component{
 	   )
 	}
   }
+}
+
+NavBar.propTypes = {  
+  actions: PropTypes.object.isRequired
 }
 
 function mapStateToProps(state) {  
