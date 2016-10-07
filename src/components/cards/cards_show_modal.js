@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-
+import * as actions from '../../actions/index'
+import { bindActionCreators } from 'redux'
 
 class CardShowModal extends React.Component {
   constructor(){
@@ -13,6 +14,18 @@ class CardShowModal extends React.Component {
     this.state = {
       showModal: true
     }
+  }
+
+  logInButton(){
+    if(this.props.logged_in){
+      return <button className="btn-default btn-sm" onClick={this.addCollection}>Add to your Collection</button>
+    }else{
+      return <p>Sign Up to start your collection</p>
+    }
+  }
+
+  addCollection(){
+    console.log('Hit addCollection')
   }
 
   close() {
@@ -33,6 +46,7 @@ class CardShowModal extends React.Component {
           <Modal.Body>
             <div className='col-md-4'>
       				<img src={this.props.card.image_url} className='img-responsive' />
+              {this.logInButton()}
       			</div>
       			<div className='col-md-4'>
       				<ul className='list-group'>
@@ -59,11 +73,15 @@ class CardShowModal extends React.Component {
 function mapStateToProps(state, ownProps){
 	if (state.cards.length > 0){
 		const card= state.cards.find(card => {return card.id == ownProps.params.id})
-		return {card: card}
+		return {card: card, logged_in: !!sessionStorage.jwt}
 	}
   else{
 		return {card:{name: 'david'}}
 	}
+}
+
+function mapDispatchToProps(dispatch){
+  return {actions: bindActionCreators(actions, dispatch)}
 }
 
 const componentCreator = connect(mapStateToProps)
