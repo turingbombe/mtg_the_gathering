@@ -8,8 +8,8 @@ import SignIn from './components/sign_in'
 import UserShow from './components/users/user_show'
 import SetsIndex from './components/sets/sets_index'
 import CardSetsShow from './components/sets/sets_show'
-import CardShow from './components/cards/cards_show'
 import CardShowModal from './components/cards/cards_show_modal'
+import CardShow from './components/cards/cards_show'
 
 
 export default (
@@ -17,7 +17,6 @@ export default (
 		<IndexRoute component= {WelcomeCoverflow} />
 		<Route path="/cardsets" component={SetsIndex}>
 			<Route path="/cardsets/:id" component={CardSetsShow} />
-			<Route path='/cards/:id' component={CardShowModal} />
 		</Route>
 		<Route path="/users/:id" component={UserShow} />
 		<Route path="/signup" component={SignUp} />
