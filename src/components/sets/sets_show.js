@@ -2,13 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import CardDisplay from '../cards/card_display'
-import CardShowModal from '../cards/cards_show_modal'
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import * as actions from '../../actions/index'
+import { bindActionCreators } from 'redux'
 
 class CardSetsShow extends React.Component {
 	constructor(){
 		super();
+		this.addCollection= this.addCollection.bind(this)
 		this.open = this.open.bind(this)
 		this.close = this.close.bind(this)
 		this.state = {
@@ -43,8 +45,21 @@ class CardSetsShow extends React.Component {
 			"W": "http://i.imgur.com/Xd07cpp.gif"
 		};
 	}
+  
+  logInButton(){
+  	debugger
+    if(this.props.logged_in){
+      return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
+    }else{
+      return <p>Sign Up to start your collection</p>
+    }
+  }
 
-	manaConverter(mana_cost) {
+  addCollection(card_id){
+    this.props.actions.addCardToCollection(card_id)
+  }
+
+  manaConverter(mana_cost) {
 		let cost = mana_cost
 		const that = this;
 		return cost.map(mana =>{
@@ -98,6 +113,7 @@ class CardSetsShow extends React.Component {
 			          <Modal.Body>
 									<div className='col-xs-6'>
 			      				<img src={this.state.card.image_url} className='img-responsive' />
+			      				{this.props.logged_in ? <button className="btn-default btn-sm" onClick={()=>this.addCollection(this.state.card.id)}>Add to your Collection</button> : <p>Sign Up to start your collection</p> }
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
@@ -125,11 +141,15 @@ function mapStateToProps(state, ownProps){
 	if (state.cardsets.length > 0){
 		const cardset= state.cardsets.find(set => {
 			return set.id == ownProps.params.id})
-		return {set: cardset}
+		return {set: cardset,logged_in: !!sessionStorage.jwt}
 	}else{
 		return {set:{name: 'david'}}
 	}
 }
 
-const componentCreator = connect(mapStateToProps)
+function mapDispatchToProps(dispatch){
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CardSetsShow)
