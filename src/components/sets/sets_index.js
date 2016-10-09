@@ -10,7 +10,7 @@ class CardSetsIndex extends React.Component {
 
 	setPanel(set) {
 		return(
-			<li>
+			<li key= {set.id}>
 				<Link to={`/cardsets/${set.id}`}>{set.name}</Link>
 			</li>
 		)

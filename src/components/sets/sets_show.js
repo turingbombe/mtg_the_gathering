@@ -50,7 +50,7 @@ class CardSetsShow extends React.Component {
 			return this.props.set.cards
 		}
 		else {
-			return this.props.set.cards.map(colorCard=>{
+			return this.props.set.cards.filter(colorCard=>{
 				if (colorCard.colors){
 					return colorCard.colors.includes(this.state.filterColor)
 				}
@@ -88,7 +88,6 @@ class CardSetsShow extends React.Component {
 	}
 
   logInButton(){
-  	debugger
     if(this.props.logged_in){
       return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
     }else{
@@ -124,7 +123,7 @@ class CardSetsShow extends React.Component {
 			this.props.set.cards.map(cardToShow => {
 				return(
 					<div>
-						<div className="panel panel-default col-md-5" onClick={()=>this.open(cardToShow)}>
+						<div className="panel panel-default col-md-5 clearfix" onClick={()=>this.open(cardToShow)}>
 							<div className="panel-heading">{cardToShow.name}</div>
 							<div className="panel-body">
 								<div className='row'> {this.manaConverter(cardToShow.mana_cost)} | {cardToShow.rarity}</div>

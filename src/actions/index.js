@@ -67,6 +67,10 @@ export function newUser(newUserInfo) {
   return {type: 'ADD_USER', payload: newUser}
 }
 
+export function setUser(userInfo){
+	return {type: 'LOG_IN_SUCCESS', payload: userInfo}
+}
+
 export function signOut() {
   return {type: 'LOG_OUT'};
 }
@@ -84,7 +88,6 @@ export function fetchUsers(){
 }
 
 export function addCardToCollection(card_id){
-	console.log("addcardtocollection", card_id)
 	const updatedCollection = fetch('http://localhost:3000/api/v1/ownerships/', {
     method: 'POST',
     headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
@@ -96,4 +99,17 @@ export function addCardToCollection(card_id){
     });
 
     return {type:'ADD_CARD_TO_COLLECTION', payload: updatedCollection}
+}
+
+export function getUserCollection(user_id){
+	const userCollecition = fetch(`http://localhost:3000/api/v1/ownerships/${user_id}`, {
+    method: 'GET',
+    headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
+  	}).then(response => {
+      return response.json();
+    }).catch(error => {
+      return error;
+    });
+
+    return{type: 'FETCH_USER_COLLECTION', payload:userCollecition}
 }
