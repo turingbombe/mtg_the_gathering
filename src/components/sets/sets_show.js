@@ -2,20 +2,61 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import CardDisplay from '../cards/card_display'
-import CardShowModal from '../cards/cards_show_modal'
+import CardFilter from '../cards/card_filter'
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import { DropdownButton } from 'react-bootstrap';
+import {MenuItem} from 'react-bootstrap';
 
 class CardSetsShow extends React.Component {
 	constructor(){
 		super();
+		this.filter = this.filter.bind(this)
+		this.filteredCards = this.filterColor.bind(this)
 		this.open = this.open.bind(this)
 		this.close = this.close.bind(this)
 		this.state = {
+			filterColor: "all",
 			showModal: false,
 			card: {}
 		}
 	}
+
+	filter(){
+		return(
+			<div>
+				<DropdownButton bsStyle='default' title='Color' id='color_filter'>
+					<MenuItem onSelect={()=>this.filterColor("all")}>All</MenuItem>
+				  <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
+				  <MenuItem onSelect={()=>this.filterColor("Blue")}>Blue</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("Black")}>Black</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("Green")}>Green</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("White")}>White</MenuItem>
+			 </DropdownButton>
+			</div>
+		)
+	}
+
+	filterColor(color){
+		this.setState({
+			filterColor: color
+		})
+	}
+
+	filteredCards(){
+		if (this.state.filterColor === "all") {
+			return this.props.set.cards
+		}
+		else {
+			return this.props.set.cards.map(colorCard=>{
+				if (colorCard.colors){
+					return colorCard.colors.includes(this.state.filterColor)
+				}
+			})
+		}
+	}
+
+
 
 	imagePaths(){
 		return {
@@ -63,7 +104,6 @@ class CardSetsShow extends React.Component {
 		 });
   }
 
-
 	cardDisplay(){
 		return(
 			this.props.set.cards.map(cardToShow => {
@@ -85,7 +125,8 @@ class CardSetsShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
-					<div className='panel-heading'>set name</div>
+					<div className='panel-heading'>{this.props.set.name}</div>
+					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}
 						</div>
