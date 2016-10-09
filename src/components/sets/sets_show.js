@@ -13,12 +13,13 @@ class CardSetsShow extends React.Component {
 	constructor(){
 		super();
 		this.filter = this.filter.bind(this)
-		this.filteredCards = this.filterColor.bind(this)
+		this.filteredCards = this.filteredCards.bind(this)
 		this.addCollection= this.addCollection.bind(this)
 		this.open = this.open.bind(this)
 		this.close = this.close.bind(this)
 		this.state = {
-			filterColor: "all",
+			filterColor: "All",
+			filterRarity: "All",
 			showModal: false,
 			card: {}
 		}
@@ -71,7 +72,6 @@ class CardSetsShow extends React.Component {
 	}
 
   logInButton(){
-  	debugger
     if(this.props.logged_in){
       return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
     }else{
@@ -86,14 +86,20 @@ class CardSetsShow extends React.Component {
 	filter(){
 		return(
 			<div>
-				<DropdownButton bsStyle='default' title='Color' id='color_filter'>
-					<MenuItem onSelect={()=>this.filterColor("all")}>All</MenuItem>
+				<DropdownButton bsStyle='default' title={this.state.filterColor}>
+					<MenuItem onSelect={()=>this.filterColor("All")}>All</MenuItem>
 				  <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
 				  <MenuItem onSelect={()=>this.filterColor("Blue")}>Blue</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("Black")}>Black</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("Green")}>Green</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("White")}>White</MenuItem>
-			 </DropdownButton>
+				</DropdownButton>
+				<DropdownButton bsStyle='default' title={this.state.filterRarity} id='filter_rarity'>
+					<MenuItem onSelect={()=>this.filterRarity("All")}>All</MenuItem>
+					<MenuItem onSelect={()=>this.filterRarity("Rare")}>Rare</MenuItem>
+					<MenuItem onSelect={()=>this.filterRarity("Uncommon")}>Uncommon</MenuItem>
+					<MenuItem onSelect={()=>this.filterRarity("Common")}>Common</MenuItem>
+				</DropdownButton>
 			</div>
 		)
 	}
@@ -104,22 +110,39 @@ class CardSetsShow extends React.Component {
 		})
 	}
 
+	filterRarity(rarity){
+		this.setState({
+			filterRarity: rarity
+		})
+	}
+
 	filteredCards(){
-		if (this.state.filterColor === "all") {
+		if (this.state.filterColor === "All" && this.state.filterRarity === "All") {
 			return this.props.set.cards
 		}
 		else {
-			return this.props.set.cards.map(colorCard=>{
-				if (colorCard.colors){
-					return colorCard.colors.includes(this.state.filterColor)
+			return this.props.set.cards.filter(card=>{
+				if (this.state.filterColor != "All" && this.state.filterRarity === "All") {
+					if (card.colors){
+						return card.colors.includes(this.state.filterColor)
+					}
+				}
+				else if (this.state.filterRarity != "All" && this.state.filterColor === "All" ) {
+					return card.rarity === this.state.filterRarity
+				}
+				else if (this.state.filterColor != "All" && this.state.filterRarity != "All"){
+					if (card.colors){
+						return card.colors.includes(this.state.filterColor) && card.rarity === this.state.filterRarity
+					}
 				}
 			})
 		}
 	}
 
+
 	cardDisplay(){
 		return(
-			this.props.set.cards.map(cardToShow => {
+			this.filteredCards().map(cardToShow => {
 				return(
 					<div>
 						<div className="panel panel-default col-md-5" onClick={()=>this.open(cardToShow)}>
@@ -164,7 +187,7 @@ class CardSetsShow extends React.Component {
 			                <li className='list-group-item'>Fl2avor: {this.state.card.flavor}</li>
 			      				</ul>
 			      			</div>
-									
+
 			          </Modal.Body>
 			          <Modal.Footer>
 			          </Modal.Footer>
