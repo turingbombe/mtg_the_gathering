@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
-import CardDisplay from '../cards/card_display'
+
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import {MenuItem} from 'react-bootstrap';
+
 import * as actions from '../../actions/index'
 import { bindActionCreators } from 'redux'
 
@@ -23,6 +23,65 @@ class CardSetsShow extends React.Component {
 			card: {}
 		}
 	}
+
+	close() {
+		this.setState({ showModal: false });
+	}
+
+	open(cardToShow) {
+		this.setState({
+			showModal: true,
+			card: cardToShow
+		 });
+	}
+
+	imagePaths(){
+		return {
+			"X": "http://vignette1.wikia.nocookie.net/mtg/images/1/13/Mana_X.png/revision/latest?cb=20070609142942",
+			"0": "http://i.imgur.com/RpdXzoT.gif",
+			"1": "http://i.imgur.com/5yo8rjQ.gif",
+			"2": "http://i.imgur.com/MTIk6kd.gif",
+			"3": "http://i.imgur.com/azPjXFT.gif",
+			"4": "http://i.imgur.com/1rqqALq.gif",
+			"5": "http://i.imgur.com/IejH3kW.gif",
+			"6": "http://i.imgur.com/FqxDqWa.gif",
+			"7": "http://i.imgur.com/con0GVj.gif",
+			"8": "http://i.imgur.com/DLsy4va.gif",
+			"9": "http://i.imgur.com/AROndxm.gif",
+			"10": "http://i.imgur.com/SXoGktV.gif",
+			"11": "http://i.imgur.com/o9rqf2n.gif",
+			"12": "http://i.imgur.com/59c4F27.gif",
+			"13": "http://i.imgur.com/sJdhllV.gif",
+			"15": "http://i.imgur.com/g5TbzAd.gif",
+			"16": "http://i.imgur.com/h60rKS0.gif",
+			"B": "http://i.imgur.com/xpU5btN.gif",
+			"R": "http://i.imgur.com/G7gS4nO.gif",
+			"U": "http://i.imgur.com/h60rKS0.gif",
+			"G": "http://i.imgur.com/tGnxYQh.gif",
+			"W": "http://i.imgur.com/Xd07cpp.gif"
+		};
+	}
+
+	manaConverter(mana_cost) {
+		let cost = mana_cost
+		const that = this;
+		return cost.map(mana =>{
+			return <img src={that.imagePaths()[mana]} />
+		})
+	}
+
+  logInButton(){
+  	debugger
+    if(this.props.logged_in){
+      return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
+    }else{
+      return <p>Sign Up to start your collection</p>
+    }
+  }
+
+  addCollection(card_id){
+    this.props.actions.addCardToCollection(card_id)
+  }
 
 	filter(){
 		return(
@@ -57,67 +116,6 @@ class CardSetsShow extends React.Component {
 			})
 		}
 	}
-
-
-
-	imagePaths(){
-		return {
-			"X": "http://vignette1.wikia.nocookie.net/mtg/images/1/13/Mana_X.png/revision/latest?cb=20070609142942",
-			"0": "http://i.imgur.com/RpdXzoT.gif",
-			"1": "http://i.imgur.com/5yo8rjQ.gif",
-			"2": "http://i.imgur.com/MTIk6kd.gif",
-			"3": "http://i.imgur.com/azPjXFT.gif",
-			"4": "http://i.imgur.com/1rqqALq.gif",
-			"5": "http://i.imgur.com/IejH3kW.gif",
-			"6": "http://i.imgur.com/FqxDqWa.gif",
-			"7": "http://i.imgur.com/con0GVj.gif",
-			"8": "http://i.imgur.com/DLsy4va.gif",
-			"9": "http://i.imgur.com/AROndxm.gif",
-			"10": "http://i.imgur.com/SXoGktV.gif",
-			"11": "http://i.imgur.com/o9rqf2n.gif",
-			"12": "http://i.imgur.com/59c4F27.gif",
-			"13": "http://i.imgur.com/sJdhllV.gif",
-			"15": "http://i.imgur.com/g5TbzAd.gif",
-			"16": "http://i.imgur.com/h60rKS0.gif",
-			"B": "http://i.imgur.com/xpU5btN.gif",
-			"R": "http://i.imgur.com/G7gS4nO.gif",
-			"U": "http://i.imgur.com/h60rKS0.gif",
-			"G": "http://i.imgur.com/tGnxYQh.gif",
-			"W": "http://i.imgur.com/Xd07cpp.gif"
-		};
-	}
-
-  logInButton(){
-  	debugger
-    if(this.props.logged_in){
-      return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
-    }else{
-      return <p>Sign Up to start your collection</p>
-    }
-  }
-
-  addCollection(card_id){
-    this.props.actions.addCardToCollection(card_id)
-  }
-
-  manaConverter(mana_cost) {
-		let cost = mana_cost
-		const that = this;
-		return cost.map(mana =>{
-		 	return <img src={that.imagePaths()[mana]} />
-		})
-	}
-
-	close() {
-    this.setState({ showModal: false });
-  }
-
-  open(cardToShow) {
-    this.setState({
-			showModal: true,
-			card: cardToShow
-		 });
-  }
 
 	cardDisplay(){
 		return(
@@ -164,9 +162,9 @@ class CardSetsShow extends React.Component {
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
 			                <li className='list-group-item'>Fl2avor: {this.state.card.flavor}</li>
-
 			      				</ul>
 			      			</div>
+									
 			          </Modal.Body>
 			          <Modal.Footer>
 			          </Modal.Footer>

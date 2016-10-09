@@ -14,8 +14,6 @@ function WelcomeCoverflow(props){
 	)
 }
 
-
-
 function mapStateToProps(state){
 	return{
 		cards: state.cards
