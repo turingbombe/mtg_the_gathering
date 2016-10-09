@@ -8,7 +8,7 @@ function WelcomeCoverflow(props){
 	return(
 		<div>
 			<Coverflow width={960} height={480} displayQuantityOfSide={2} navigation={true} enableHeading={false}>
-				{props.cards.map(card => <Link to={`cards/${card.id}`}><img src={card.image_url} alt={card.name}/></Link>)}
+				{props.cards.map(card => <Link to={`cards/${card.id}`}><img src={card.image_url} alt={card.name} key={card.id}/></Link>)}
 			</Coverflow>
 		</div>
 	)

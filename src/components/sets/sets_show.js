@@ -13,7 +13,7 @@ class CardSetsShow extends React.Component {
 	constructor(){
 		super();
 		this.filter = this.filter.bind(this)
-		this.filteredCards = this.filterColor.bind(this)
+		this.filteredCards = this.filteredCards.bind(this)
 		this.addCollection= this.addCollection.bind(this)
 		this.open = this.open.bind(this)
 		this.close = this.close.bind(this)
@@ -29,10 +29,29 @@ class CardSetsShow extends React.Component {
 	}
 
 	open(cardToShow) {
-		this.setState({
+		this.setState({			
 			showModal: true,
 			card: cardToShow
 		 });
+	}
+
+	filterColor(){
+		this.setState({
+			filterColor: color
+		})
+	}
+
+	filteredCards(){
+		if (this.state.filterColor === "all") {
+			return this.props.set.cards
+		}
+		else {
+			return this.props.set.cards.filter(colorCard=>{
+				if (colorCard.colors){
+					return colorCard.colors.includes(this.state.filterColor)
+				}
+			})
+		}
 	}
 
 	imagePaths(){
@@ -71,7 +90,6 @@ class CardSetsShow extends React.Component {
 	}
 
   logInButton(){
-  	debugger
     if(this.props.logged_in){
       return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
     }else{
@@ -88,8 +106,8 @@ class CardSetsShow extends React.Component {
 			<div>
 				<DropdownButton bsStyle='default' title='Color' id='color_filter'>
 					<MenuItem onSelect={()=>this.filterColor("all")}>All</MenuItem>
-				  <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
-				  <MenuItem onSelect={()=>this.filterColor("Blue")}>Blue</MenuItem>
+				    <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
+				    <MenuItem onSelect={()=>this.filterColor("Blue")}>Blue</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("Black")}>Black</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("Green")}>Green</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("White")}>White</MenuItem>
@@ -122,7 +140,7 @@ class CardSetsShow extends React.Component {
 			this.props.set.cards.map(cardToShow => {
 				return(
 					<div>
-						<div className="panel panel-default col-md-5" onClick={()=>this.open(cardToShow)}>
+						<div className="panel panel-default col-md-5 clearfix" onClick={()=>this.open(cardToShow)}>
 							<div className="panel-heading">{cardToShow.name}</div>
 							<div className="panel-body">
 								<div className='row'> {this.manaConverter(cardToShow.mana_cost)} | {cardToShow.rarity}</div>
