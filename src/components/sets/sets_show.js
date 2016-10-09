@@ -86,6 +86,7 @@ class CardSetsShow extends React.Component {
 	filter(){
 		return(
 			<div>
+				Color:
 				<DropdownButton bsStyle='default' title={this.state.filterColor}>
 					<MenuItem onSelect={()=>this.filterColor("All")}>All</MenuItem>
 				  <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
@@ -93,8 +94,10 @@ class CardSetsShow extends React.Component {
 					<MenuItem onSelect={()=>this.filterColor("Black")}>Black</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("Green")}>Green</MenuItem>
 					<MenuItem onSelect={()=>this.filterColor("White")}>White</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("Colorless")}>Colorless</MenuItem>
 				</DropdownButton>
-				<DropdownButton bsStyle='default' title={this.state.filterRarity} id='filter_rarity'>
+				  Rarity:
+				<DropdownButton bsStyle='default' title={this.state.filterRarity}>
 					<MenuItem onSelect={()=>this.filterRarity("All")}>All</MenuItem>
 					<MenuItem onSelect={()=>this.filterRarity("Rare")}>Rare</MenuItem>
 					<MenuItem onSelect={()=>this.filterRarity("Uncommon")}>Uncommon</MenuItem>
@@ -200,6 +203,7 @@ class CardSetsShow extends React.Component {
 }
 
 function mapStateToProps(state, ownProps){
+	console.log("MSTP", state)
 	if (state.cardsets.length > 0){
 		const cardset= state.cardsets.find(set => {
 			return set.id == ownProps.params.id})
