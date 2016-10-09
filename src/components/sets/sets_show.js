@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
-import CardDisplay from '../cards/card_display'
+
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import {MenuItem} from 'react-bootstrap';
+
 import * as actions from '../../actions/index'
 import { bindActionCreators } from 'redux'
 
@@ -13,7 +13,7 @@ class CardSetsShow extends React.Component {
 	constructor(){
 		super();
 		this.filter = this.filter.bind(this)
-		this.filteredCards = this.filterColor.bind(this)
+		this.filteredCards = this.filteredCards.bind(this)
 		this.addCollection= this.addCollection.bind(this)
 		this.open = this.open.bind(this)
 		this.close = this.close.bind(this)
@@ -24,22 +24,18 @@ class CardSetsShow extends React.Component {
 		}
 	}
 
-	filter(){
-		return(
-			<div>
-				<DropdownButton bsStyle='default' title='Color' id='color_filter'>
-					<MenuItem onSelect={()=>this.filterColor("all")}>All</MenuItem>
-				  <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
-				  <MenuItem onSelect={()=>this.filterColor("Blue")}>Blue</MenuItem>
-					<MenuItem onSelect={()=>this.filterColor("Black")}>Black</MenuItem>
-					<MenuItem onSelect={()=>this.filterColor("Green")}>Green</MenuItem>
-					<MenuItem onSelect={()=>this.filterColor("White")}>White</MenuItem>
-			 </DropdownButton>
-			</div>
-		)
+	close() {
+		this.setState({ showModal: false });
 	}
 
-	filterColor(color){
+	open(cardToShow) {
+		this.setState({			
+			showModal: true,
+			card: cardToShow
+		 });
+	}
+
+	filterColor(){
 		this.setState({
 			filterColor: color
 		})
@@ -57,8 +53,6 @@ class CardSetsShow extends React.Component {
 			})
 		}
 	}
-
-
 
 	imagePaths(){
 		return {
@@ -87,6 +81,14 @@ class CardSetsShow extends React.Component {
 		};
 	}
 
+	manaConverter(mana_cost) {
+		let cost = mana_cost
+		const that = this;
+		return cost.map(mana =>{
+			return <img src={that.imagePaths()[mana]} />
+		})
+	}
+
   logInButton(){
     if(this.props.logged_in){
       return <button className="btn-default btn-sm" onClick={()=>this.addCollection()}>Add to your Collection</button>
@@ -99,24 +101,39 @@ class CardSetsShow extends React.Component {
     this.props.actions.addCardToCollection(card_id)
   }
 
-  manaConverter(mana_cost) {
-		let cost = mana_cost
-		const that = this;
-		return cost.map(mana =>{
-		 	return <img src={that.imagePaths()[mana]} />
+	filter(){
+		return(
+			<div>
+				<DropdownButton bsStyle='default' title='Color' id='color_filter'>
+					<MenuItem onSelect={()=>this.filterColor("all")}>All</MenuItem>
+				    <MenuItem onSelect={()=>this.filterColor("Red")}>Red</MenuItem>
+				    <MenuItem onSelect={()=>this.filterColor("Blue")}>Blue</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("Black")}>Black</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("Green")}>Green</MenuItem>
+					<MenuItem onSelect={()=>this.filterColor("White")}>White</MenuItem>
+			 </DropdownButton>
+			</div>
+		)
+	}
+
+	filterColor(color){
+		this.setState({
+			filterColor: color
 		})
 	}
 
-	close() {
-    this.setState({ showModal: false });
-  }
-
-  open(cardToShow) {
-    this.setState({
-			showModal: true,
-			card: cardToShow
-		 });
-  }
+	filteredCards(){
+		if (this.state.filterColor === "all") {
+			return this.props.set.cards
+		}
+		else {
+			return this.props.set.cards.map(colorCard=>{
+				if (colorCard.colors){
+					return colorCard.colors.includes(this.state.filterColor)
+				}
+			})
+		}
+	}
 
 	cardDisplay(){
 		return(
@@ -163,9 +180,9 @@ class CardSetsShow extends React.Component {
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
 			                <li className='list-group-item'>Fl2avor: {this.state.card.flavor}</li>
-
 			      				</ul>
 			      			</div>
+									
 			          </Modal.Body>
 			          <Modal.Footer>
 			          </Modal.Footer>
