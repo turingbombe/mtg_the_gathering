@@ -13,6 +13,7 @@ class CardSetsIndex extends React.Component {
 		this.searchHandler = this.searchHandler.bind(this)
 		this.close = this.close.bind(this)
 		this.searchBar = this.searchBar.bind(this)
+		this.addCollection= this.addCollection.bind(this)
 		this.state = {
 			showModal: false
 		}
@@ -38,6 +39,10 @@ class CardSetsIndex extends React.Component {
 			showModal: true
 		})
 		this.refs.search.value = ""
+	}
+
+	addCollection(card_id){
+    	this.props.actions.addCardToCollection(card_id)
 	}
 
 	searchBar() {

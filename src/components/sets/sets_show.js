@@ -36,25 +36,6 @@ class CardSetsShow extends React.Component {
 		 });
 	}
 
-	filterColor(color){
-		this.setState({
-			filterColor: color
-		})
-	}
-
-	filteredCards(){
-		if (this.state.filterColor === "all") {
-			return this.props.set.cards
-		}
-		else {
-			return this.props.set.cards.filter(colorCard=>{
-				if (colorCard.colors){
-					return colorCard.colors.includes(this.state.filterColor)
-				}
-			})
-		}
-	}
-
 	imagePaths(){
 		return {
 			"X": "http://vignette1.wikia.nocookie.net/mtg/images/1/13/Mana_X.png/revision/latest?cb=20070609142942",
@@ -207,7 +188,7 @@ class CardSetsShow extends React.Component {
 			      					<li className='list-group-item'>CMC: {this.state.card.cmc}</li>
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
-			                <li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
+			                		<li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
 			      				</ul>
 			      			</div>
 
