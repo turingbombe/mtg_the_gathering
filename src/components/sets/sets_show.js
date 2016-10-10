@@ -35,11 +35,6 @@ class CardSetsShow extends React.Component {
 		 });
 	}
 
-	filterColor(){
-		this.setState({
-			filterColor: color
-		})
-	}
 
 	filteredCards(){
 		if (this.state.filterColor === "all") {

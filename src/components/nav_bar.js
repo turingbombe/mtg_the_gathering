@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
@@ -13,8 +13,10 @@ class NavigationBar extends React.Component{
    }
 
    fetchCollection(){
-   	this.props.actions.getUserCollection(sessionStorage.current_user)
+   	console.log("collection:",sessionStorage.current_user)
+   	this.props.actions.getUserCollection(sessionStorage.current_user).then(()=> browserHistory.push(`/users/${sessionStorage.current_user}`))
    }
+
    logOut(event) {
     event.preventDefault();
     this.props.actions.signOut();
@@ -48,7 +50,7 @@ class NavigationBar extends React.Component{
 	      </Navbar.Header>
 	      <Nav pullRight>
 		      <NavDropdown eventKey={1} title="Menu" id="basic-nav-dropdown">
-	          	<MenuItem eventKey={1.1}><Link to={`/users/${sessionStorage.current_user}`} onClick={this.fetchCollection}>Your Profile</Link></MenuItem>
+	          	<MenuItem eventKey={1.1}><p onClick={this.fetchCollection}>Your Profile</p></MenuItem>
 	          	<MenuItem eventKey={1.2}><Link to="/" onClick={this.logOut}>Log Out</Link></MenuItem>
 	          </NavDropdown>
 	      </Nav>
