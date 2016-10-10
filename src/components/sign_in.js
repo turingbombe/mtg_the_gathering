@@ -7,7 +7,6 @@ class SignIn extends React.Component {
 
   newUserHandler(event) {
     event.preventDefault()
-
     const userInfo = {email: this.refs.email.value, password: this.refs.password.value}
     this.props.actions.signIn(userInfo)
   }
@@ -16,10 +15,10 @@ class SignIn extends React.Component {
     return (
       <div>
         <form onSubmit={this.newUserHandler.bind(this)}>
-          <label>Email:: </label>
+          <label>Email: </label>
           <input ref='email' />
           <label>Password: </label>
-          <input ref='password' />
+          <input type='passwrod' ref='password' />
           <input type="submit"/>
         </form>
       </div>

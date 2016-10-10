@@ -222,7 +222,6 @@ class CardSetsShow extends React.Component {
 }
 
 function mapStateToProps(state, ownProps){
-	console.log("MSTP", state)
 	if (state.cardsets.length > 0){
 		const cardset= state.cardsets.find(set => {
 			return set.id == ownProps.params.id})

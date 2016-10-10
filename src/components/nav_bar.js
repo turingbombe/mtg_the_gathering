@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
 import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
 
+
 class NavigationBar extends React.Component{
    constructor(){
    	super()
@@ -20,7 +21,7 @@ class NavigationBar extends React.Component{
    logOut(event) {
     event.preventDefault();
     this.props.actions.signOut();
-  } 
+  }
 
 
   render(){
@@ -33,11 +34,11 @@ class NavigationBar extends React.Component{
 	        </Navbar.Brand>
 	      </Navbar.Header>
 	      <Nav pullRight>
-	      		<NavDropdown eventKey={1} title="Menu" id="basic-nav-dropdown">
-					<MenuItem eventKey={1.1}><Link to="/signup" className='Navbar-item'>Sign Up</Link></MenuItem>
-					<MenuItem eventKey={1.2}><Link to="/signin" className ='Navbar-item'>Sign In</Link></MenuItem>
-				</NavDropdown>
-		  </Nav>
+  	      <NavDropdown eventKey={1} title="Menu" id="basic-nav-dropdown">
+  					<MenuItem eventKey={1.1}><Link to="/signup" className='Navbar-item'>Sign Up</Link></MenuItem>
+  					<MenuItem eventKey={1.2}><Link to="/signin" className ='Navbar-item'>Sign In</Link></MenuItem>
+  				</NavDropdown>
+		    </Nav>
 	    </Navbar>
 	  )
 	}else{
@@ -60,11 +61,11 @@ class NavigationBar extends React.Component{
   }
 }
 
-// NavigationBar.propTypes = {  
+// NavigationBar.propTypes = {
 //   actions: PropTypes.object.isRequired
 // }
 
-function mapStateToProps(state) {  
+function mapStateToProps(state) {
   return {logged_in: !!sessionStorage.jwt};
 }
 

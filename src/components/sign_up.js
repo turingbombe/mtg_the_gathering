@@ -21,12 +21,12 @@ class SignUp extends React.Component {
           <input ref='firstName' />
           <label>Last Name: </label>
           <input ref='lastName' />
-          <label>Email:: </label>
+          <label>Email: </label>
           <input ref='email' />
           <label>Password: </label>
-          <input ref='password' />
+          <input type= 'password' ref='password' />
           <label>Password Confirmation:</label>
-          <input ref='passwordConfirmation' />
+          <input type='password' ref='passwordConfirmation' />
           <input type="submit"/>
         </form>
       </div>
