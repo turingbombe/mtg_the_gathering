@@ -10,7 +10,7 @@ class SignUp extends React.Component {
     event.preventDefault()
 
     const userInfo = {first_name: this.refs.firstName.value, last_name: this.refs.lastName.value, email: this.refs.email.value, password: this.refs.password.value, password_confirmation: this.refs.passwordConfirmation.value}
-    this.props.actions.newUser(userInfo).then(()=> this.props.actions.setUser({jwt:sessionStorage.jwt,user_id:sessionStorage.current_user}))
+    this.props.actions.newUser(userInfo).then(()=> this.props.actions.setUser({jwt:sessionStorage.jwt,user_id:sessionStorage.current_user})).then(()=> this.props.actions.getUserCollection(sessionStorage.current_user))
   }
 
   render() {

@@ -8,7 +8,7 @@ class SignIn extends React.Component {
   newUserHandler(event) {
     event.preventDefault()
     const userInfo = {email: this.refs.email.value, password: this.refs.password.value}
-    this.props.actions.signIn(userInfo)
+    this.props.actions.signIn(userInfo).then(() => this.props.actions.getUserCollection(sessionStorage.current_user))
   }
 
   render() {

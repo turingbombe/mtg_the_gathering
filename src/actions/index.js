@@ -115,6 +115,7 @@ export function addCardToCollection(card_id){
 }
 
 export function getUserCollection(user_id){
+	console.log("actions user id:", user_id)
 	const userCollecition = fetch(`http://localhost:3000/api/v1/ownerships/${user_id}`, {
     method: 'GET',
     headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
