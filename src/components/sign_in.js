@@ -14,13 +14,19 @@ class SignIn extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.newUserHandler.bind(this)}>
-          <label>Email: </label>
-          <input ref='email' />
-          <label>Password: </label>
-          <input type='password' ref='password' />
-          <input type="submit"/>
-        </form>
+        <div id='signin_form'>
+          <form onSubmit={this.newUserHandler.bind(this)}>
+            <label>Email: </label>
+            <div>
+            <input ref='email' />
+            </div>
+            <label>Password: </label>
+            <div>
+            <input type='password' ref='password' />
+            </div>
+            <input type="submit"/>
+          </form>
+        </div>
       </div>
     )
   }

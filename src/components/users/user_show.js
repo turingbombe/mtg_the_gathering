@@ -11,16 +11,11 @@ class UserShow extends React.Component {
   render(){
     return (
       <div>
-        <h1>Welcome to The Gathering, {this.props.user.first_name}</h1>
+        <h1 id='usershow_text'>Welcome to The Gathering, {this.props.user.first_name}</h1>
         <div className='panel panel-default col-md-4' >
           <div className='panel-heading'>Your Collection & Decks</div>
           <div className='panel-body' id="sets_index">
 
-            <ul>
-              <li><Link to={`/collections/${this.props.collection.id}`}>Your Collection</Link></li>
-              {this.props.collection.decks ? this.props.collection.decks.map(deck => <li><Link to={`deck.id`}>{deck.name}</Link></li>): <li>You Need to Create a Deck!</li>}  
-            </ul>
-              
           </div>
         </div>
         <div className='col-md-8'>

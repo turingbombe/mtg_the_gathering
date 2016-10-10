@@ -75,7 +75,7 @@ class CardSetsIndex extends React.Component {
 			      					<li className='list-group-item'>CMC: {this.props.search.cmc}</li>
 			      					<li className='list-group-item'>Power: {this.props.search.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.props.search.toughness}</li>
-			                <li className='list-group-item'>Fl2avor: {this.props.search.flavor}</li>
+			                <li className='list-group-item'>Flavor: {this.props.search.flavor}</li>
 			      				</ul>
 			      			</div>
 			          </Modal.Body>

@@ -79,6 +79,7 @@ class CardSetsShow extends React.Component {
 			"U": "http://i.imgur.com/h60rKS0.gif",
 			"G": "http://i.imgur.com/tGnxYQh.gif",
 			"W": "http://i.imgur.com/Xd07cpp.gif"
+
 		};
 	}
 
@@ -86,7 +87,7 @@ class CardSetsShow extends React.Component {
 		let cost = mana_cost
 		const that = this;
 		return cost.map(mana =>{
-			return <img src={that.imagePaths()[mana]} />
+			return <img src={that.imagePaths()[mana]} height='25px' width='25px' />
 		})
 	}
 
@@ -206,7 +207,7 @@ class CardSetsShow extends React.Component {
 			      					<li className='list-group-item'>CMC: {this.state.card.cmc}</li>
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
-			                <li className='list-group-item'>Fl2avor: {this.state.card.flavor}</li>
+			                <li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
 			      				</ul>
 			      			</div>
 

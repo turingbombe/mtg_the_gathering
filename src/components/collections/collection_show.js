@@ -6,9 +6,9 @@ class CollectionSetsShow extends React.Component {
 	render(){
 		return(
 			<div>
-				<h1>Hey There</h1>
+				<h1 id='heythere'>Hey There</h1>
 				<ul>
-					{this.props.collection.card_ids.map(card => <li>{card}</li>)}
+					{this.props.collection.card_ids.map(card => <li id='list'>{card}</li>)}
 				</ul>
 			</div>
 		)

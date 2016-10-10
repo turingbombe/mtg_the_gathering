@@ -16,19 +16,31 @@ class SignUp extends React.Component {
   render() {
     return (
       <div>
+        <div id='signup'>
         <form onSubmit={this.newUserHandler.bind(this)}>
           <label>First Name: </label>
+          <div>
           <input ref='firstName' />
+          </div>
           <label>Last Name: </label>
+          <div>
           <input ref='lastName' />
+          </div>
           <label>Email: </label>
+          <div>
           <input ref='email' />
+          </div>
           <label>Password: </label>
+          <div>
           <input type= 'password' ref='password' />
+          </div>
           <label>Password Confirmation:</label>
+          <div>
           <input type='password' ref='passwordConfirmation' />
+          </div>
           <input type="submit"/>
         </form>
+        </div>
       </div>
     )
   }
