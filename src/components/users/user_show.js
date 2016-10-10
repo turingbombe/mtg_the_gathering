@@ -3,7 +3,11 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 class UserShow extends React.Component {
-  // {this.props.collection.decks ? this.props.collection.decks.map(deck => <li><Link to={`this.props.collection.deck`}>{this.props.collection.deck.name}</Link></li>): <li>You Need to Create a Deck!</li>}
+  constructor(){
+    super()
+
+  }
+
   render(){
     return (
       <div>
@@ -14,7 +18,7 @@ class UserShow extends React.Component {
 
             <ul>
               <li><Link to={`/collections/${this.props.collection.id}`}>Your Collection</Link></li>
-                           
+              {this.props.collection.decks ? this.props.collection.decks.map(deck => <li><Link to={`deck.id`}>{deck.name}</Link></li>): <li>You Need to Create a Deck!</li>}  
             </ul>
               
           </div>
@@ -27,21 +31,19 @@ class UserShow extends React.Component {
   }
 }
 
+
 function mapStateToProps(state, ownProps){
-    console.log("mstp",state)
-	if (state.users.length > 0 ){
+	if (state.users.length > 0 &&  state.collections.find(c =>{ return c.user_id == ownProps.params.id})){
 		const user = state.users.find(u => {
-        console.log("mstp users:", u)
         return u.id == ownProps.params.id
       })
     const collection = state.collections.find(c =>{
-      console.log("mstp collection:", c)
-      console.log("mstp collection id:", c.user_id)
       return c.user_id == ownProps.params.id
     })
+    console.log("mstp final:", collection)
 		return {user:user, collection: collection}
 	}else{
-		return {user:{name: 'david'}}
+		return {user:{first_name: "Loading...."}, collection:{id:'temp', decks: [{id: 1,name: 'Loading....'}]}}
 	}
 }
 
