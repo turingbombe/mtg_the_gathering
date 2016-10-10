@@ -1,11 +1,9 @@
 const BASE_URL = 'http://localhost:3000/api/v1'
 
 export function fetchCard(id){
-	console.log("fetch card action", id)
 	const card = fetch(`${BASE_URL}/cards/${id}`).then(response =>{
 			return response.json();
 		}).then(cardPayload =>{
-			console.log("action payload", cardPayload)
 			return cardPayload;
 		})
 	return {
@@ -13,6 +11,21 @@ export function fetchCard(id){
 		payload: card
 	}
 }
+
+export function searchCard(searchTerm){
+  const searchCard = fetch('http://localhost:3000/api/v1/searches', {
+    method: 'POST',
+    headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+    body: JSON.stringify({search: searchTerm})
+  }).then(response => {
+    return response.json()
+  }).then(searchPayload => {
+    return searchPayload
+  }).catch(error => {
+  })
+  return{ type: 'SEARCH_CARD', payload: searchCard}
+}
+
 
 export function fetchCardSets(){
 	const cardsets = fetch(`${BASE_URL}/card_sets/`).then(response =>{

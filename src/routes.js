@@ -8,7 +8,6 @@ import SignIn from './components/sign_in'
 import UserShow from './components/users/user_show'
 import SetsIndex from './components/sets/sets_index'
 import CardSetsShow from './components/sets/sets_show'
-import CardShow from './components/cards/cards_show'
 
 
 export default (
