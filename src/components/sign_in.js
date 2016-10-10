@@ -18,7 +18,7 @@ class SignIn extends React.Component {
           <label>Email: </label>
           <input ref='email' />
           <label>Password: </label>
-          <input type='passwrod' ref='password' />
+          <input type='password' ref='password' />
           <input type="submit"/>
         </form>
       </div>

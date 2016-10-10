@@ -37,6 +37,7 @@ class CardSetsIndex extends React.Component {
 		this.setState({
 			showModal: true
 		})
+		this.refs.search.value = ""
 	}
 
 	searchBar() {
