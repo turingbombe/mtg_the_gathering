@@ -10,7 +10,6 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <div className="container">
-        <Link to="/cardsets">MULTIVERSE</Link>
           <div>{this.props.children}</div>
         </div>
       </div>

@@ -21,8 +21,8 @@ class CardSetsIndex extends React.Component {
 
 	setPanel(set) {
 		return(
-			<li key= {set.id}>
-				<Link to={`/cardsets/${set.id}`}>{set.name}</Link>
+			<li key= {set.id} className='list-group-item'>
+				<Link id='setlink' to={`/cardsets/${set.id}`}>{set.name}</Link>
 			</li>
 		)
 	}
@@ -49,7 +49,8 @@ class CardSetsIndex extends React.Component {
 		return(
 			<div>
 				<form onSubmit={this.searchHandler}>
-					<input ref='search' placeholder='Search for Card by Name' />
+
+					<input className='form-control' ref='search' placeholder='Search for Card by Name' />
 				</form>
 			</div>
 		)
@@ -88,8 +89,7 @@ class CardSetsIndex extends React.Component {
 			          </Modal.Footer>
 			        </Modal>
 			      </div>
-
-						<ul>
+						<ul className='list-group'>
 							{this.props.cardsets.map( set => this.setPanel(set) )}
 						</ul>
 					</div>

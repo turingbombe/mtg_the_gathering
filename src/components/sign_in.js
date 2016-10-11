@@ -14,19 +14,22 @@ class SignIn extends React.Component {
   render() {
     return (
       <div>
-        <div id='signin_form'>
-          <form onSubmit={this.newUserHandler.bind(this)}>
-            <label>Email: </label>
-            <div>
-            <input ref='email' />
-            </div>
-            <label>Password: </label>
-            <div>
-            <input type='password' ref='password' />
-            </div>
-            <input type="submit"/>
-          </form>
+        <div className='panel panel-default col-xs-6' >
+          <div className='panel-body'>
+            <form onSubmit={this.newUserHandler.bind(this)}>
+              <div className='form-group'>
+                <label>Email: </label>
+                <input className='form-control' ref='email' />
+              </div>
+              <div className='form-group'>
+                <label>Password: </label>
+                <input className='form-control' type='password' ref='password' />
+              </div>
+              <input type="submit" className='btn btn-default'/>
+            </form>
+          </div>
         </div>
+
       </div>
     )
   }

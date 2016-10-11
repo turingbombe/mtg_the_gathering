@@ -5,9 +5,11 @@ import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import {MenuItem} from 'react-bootstrap';
+import {Alert} from 'react-bootstrap'
 
 import * as actions from '../../actions/index'
 import { bindActionCreators } from 'redux'
+
 
 class CardSetsShow extends React.Component {
 	constructor(){
@@ -83,6 +85,7 @@ class CardSetsShow extends React.Component {
   addCollection(card_id){
     this.props.actions.addCardToCollection(card_id)
   }
+
 
 	filter(){
 		return(
@@ -188,7 +191,7 @@ class CardSetsShow extends React.Component {
 			      					<li className='list-group-item'>CMC: {this.state.card.cmc}</li>
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
-			                		<li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
+			                <li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
 			      				</ul>
 			      			</div>
 

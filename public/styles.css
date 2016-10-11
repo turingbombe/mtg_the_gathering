@@ -12,26 +12,23 @@
   background-image: url(https://s-media-cache-ak0.pinimg.com/originals/18/8c/2e/188c2ef9dafa95693f0d919942500c09.jpg);
 }
 
-#signin_form {
-  height: 300px;
-  width: 300px;
-  background-color: grey;
+#navbar {
+  background-image: url(http://bgfons.com/upload/marble_texture4665.jpg);
 }
 
-#signup {
-  height: 600px;
-  width: 300px;
-  background-color: grey;
+#navbrand {
+  color: black;
 }
 
-#usershow_text {
-  color: white;
+#navmulti {
+  color: black;
 }
 
-#heythere {
-  color: white;
+
+.navbar-default .navbar-nav>li>a {
+    color: black;
 }
 
-#list {
-  color: white;
+#setlink {
+  color: #c8c8c8;
 }
