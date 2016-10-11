@@ -11,7 +11,6 @@ class UserShow extends React.Component {
   render(){
     return (
       <div>
-        <h1 id='usershow_text'>Welcome to The Gathering, {this.props.user.first_name}</h1>
         <div className='panel panel-default col-md-4' >
           <div className='panel-heading'>Your Collection & Decks</div>
           <div className='panel-body' id="sets_index">

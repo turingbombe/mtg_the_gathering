@@ -73,7 +73,6 @@ class CollectionSetsShow extends React.Component {
 	}
 
 	manaConverter(mana_cost) {
-		debugger
 		let cost = mana_cost
 		const that = this;
 		return cost.map(mana =>{
@@ -151,7 +150,6 @@ class CollectionSetsShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
-					<div className='panel-heading'>{this.props.collection.name}</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}
@@ -165,7 +163,7 @@ class CollectionSetsShow extends React.Component {
 			          <Modal.Body>
 							<div className='col-xs-6'>
 			      				<img src={this.state.card.image_url} className='img-responsive' />
-			      				
+
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
