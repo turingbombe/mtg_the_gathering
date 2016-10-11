@@ -32,7 +32,7 @@ class NavigationBar extends React.Component{
             <img src="http://i.imgur.com/Scbeiy2.png" height='45px' width='45px'></img>
         </Nav>
         <Navbar.Brand>
-          <Link id='navbrand' to="/">Magic The Gathering: The Gathering</Link>
+          <Link id='navbrand' to="/">agic The Gathering: The Gathering</Link>
         </Navbar.Brand>
         <Nav><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></Nav>
 	      <Nav pullRight>
@@ -50,7 +50,7 @@ class NavigationBar extends React.Component{
             <img src="http://i.imgur.com/Scbeiy2.png" height='45px' width='45px'></img>
         </Nav>
         <Navbar.Brand>
-          <Link id='navbrand' to="/">Magic The Gathering: The Gathering</Link>
+          <Link id='navbrand' to="/">agic The Gathering: The Gathering</Link>
         </Navbar.Brand>
         <Nav><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></Nav>
 	      <Nav pullRight>
