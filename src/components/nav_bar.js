@@ -52,7 +52,7 @@ class NavigationBar extends React.Component{
         <Navbar.Brand>
           <Link id='navbrand' to="/">agic The Gathering: The Gathering</Link>
         </Navbar.Brand>
-        <Nav><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></Nav>
+        <Nav><NavItem><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></NavItem></Nav>
 	      <Nav pullRight>
 		      <NavDropdown id='navdrop' eventKey={1} title="Menu" id="basic-nav-dropdown">
 	          	<MenuItem eventKey={1.1}><p onClick={this.fetchCollection}>Your Profile</p></MenuItem>
