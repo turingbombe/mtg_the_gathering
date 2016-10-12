@@ -115,7 +115,6 @@ export function addCardToCollection(card_id){
 }
 
 export function getUserCollection(user_id){
-	console.log("actions user id:", user_id)
 	const userCollecition = fetch(`http://localhost:3000/api/v1/ownerships/${user_id}`, {
     method: 'GET',
     headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
@@ -126,4 +125,19 @@ export function getUserCollection(user_id){
     });
 
     return{type: 'FETCH_USER_COLLECTION', payload:userCollecition}
+}
+
+export function addCardToDeck(card_id,deck_id){
+  console.log("Add card to deck:",card_id,deck_id)
+  const updatedCollectionDeck = fetch(`http://localhost:3000/api/v1/card_decks/${deck_id}`, {
+  method: 'PATCH',
+  headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+  body: JSON.stringify({card_id: card_id,deck_id: deck_id})
+  }).then(response => {
+    return response.json();
+  }).catch(error => {
+    return error;
+  });
+
+  return {type: 'ADD_CARD_TO_DECK', payload:updatedCollectionDeck}
 }

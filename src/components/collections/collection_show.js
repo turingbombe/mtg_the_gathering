@@ -4,6 +4,9 @@ import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import { DropdownButton } from 'react-bootstrap';
 import {MenuItem} from 'react-bootstrap';
+import * as actions from '../../actions/index'
+import { bindActionCreators } from 'redux'
+
 
 class CollectionSetsShow extends React.Component {
 	constructor(){
@@ -73,7 +76,6 @@ class CollectionSetsShow extends React.Component {
 	}
 
 	manaConverter(mana_cost) {
-		debugger
 		let cost = mana_cost
 		const that = this;
 		return cost.map(mana =>{
@@ -105,6 +107,9 @@ class CollectionSetsShow extends React.Component {
 		)
 	}
 
+	addToDeck(card_id,deck_id){
+		this.props.actions.addCardToDeck(card_id,deck_id)
+	}
 	filteredCards(){
 		if (this.state.filterColor === "All" && this.state.filterRarity === "All") {
 			console.log("filteredCards()",this.props.collection.cards)
@@ -165,7 +170,9 @@ class CollectionSetsShow extends React.Component {
 			          <Modal.Body>
 							<div className='col-xs-6'>
 			      				<img src={this.state.card.image_url} className='img-responsive' />
-			      				
+			      				<DropdownButton bsStyle='default' title='Add Card To Deck'>
+									{this.props.collection.decks.map(deck => <MenuItem onClick={()=> this.addToDeck(this.state.card.id,deck.id)}>{deck.name}</MenuItem>)}
+			      				</DropdownButton>
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
@@ -197,9 +204,12 @@ function mapStateToProps(state, ownProps){
 			console.log("collection show collection:", collection_match)
 			return {collection: collection_match}
 		}else{
-			return {collection: {cards: [{name:"Loading",}]}}
+			return {"id":2,"name":"Gathering Charlie","card_ids":[2312,2313],"user_id":2,"decks":[{"id":2,"name":"Your first deck","description":"An empty deck to get you started!","card_ids":[],"collection_id":2}],"cards":[{"id":2312,"cmc":6,"colors":["Blue"],"flavor":"\"When one has witnessed the unspeakable, 'tis sometimes better to forget.\" —Vervamon the Elder","image_url":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1746\u0026type=card","mana_cost":["3","U","U","U"],"name":"Amnesia","original_text":"Look at target player's hand. Target player discards all non-land cards in his or her hand.","original_type":null,"power":null,"rarity":"Uncommon","set_name":null,"card_text":"Target player reveals his or her hand and discards all nonland cards.","toughness":null,"card_type":null,"card_set_id":10},{"id":2313,"cmc":4,"colors":["White"],"flavor":null,"image_url":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1801\u0026type=card","mana_cost":["2","W","W"],"name":"Angry Mob","original_text":"Trample\nDuring your turn, the *s below are both equal to the total number of swamps all opponents control. During any other player's turn, * equals 0.","original_type":null,"power":"2+*","rarity":"Uncommon","set_name":null,"card_text":"Trample\nAs long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control. As long as it's not your turn, Angry Mob's power and toughness are each 2.","toughness":"2+*","card_type":null,"card_set_id":10}]}
 		}
 }
 
-const componentCreator = connect(mapStateToProps)
+function mapDispatchToProps(dispatch){
+  return {actions: bindActionCreators(actions, dispatch)}
+}
+const componentCreator = connect(mapStateToProps, mapDispatchToProps)
 export default componentCreator(CollectionSetsShow)
