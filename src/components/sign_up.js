@@ -16,30 +16,32 @@ class SignUp extends React.Component {
   render() {
     return (
       <div>
-        <div id='signup'>
-        <form onSubmit={this.newUserHandler.bind(this)}>
-          <label>First Name: </label>
-          <div>
-          <input ref='firstName' />
-          </div>
-          <label>Last Name: </label>
-          <div>
-          <input ref='lastName' />
-          </div>
-          <label>Email: </label>
-          <div>
-          <input ref='email' />
-          </div>
-          <label>Password: </label>
-          <div>
-          <input type= 'password' ref='password' />
-          </div>
-          <label>Password Confirmation:</label>
-          <div>
-          <input type='password' ref='passwordConfirmation' />
-          </div>
-          <input type="submit"/>
-        </form>
+        <div className='panel panel-default col-xs-6' >
+          <div className='panel-body'>
+            <form onSubmit={this.newUserHandler.bind(this)}>
+              <div className='form-group'>
+                <label>First Name: </label>
+                <input className='form-control' ref='firstName' />
+              </div>
+              <div className='form-group'>
+                <label>Last Name: </label>
+                <input className='form-control' ref='lastName' />
+              </div>
+              <div className='form-group'>
+                <label>Email: </label>
+                <input className='form-control' ref='email' />
+              </div>
+              <div className='form-group'>
+                <label>Password: </label>
+                <input className='form-control' type= 'password' ref='password' />
+              </div>
+              <div className='form-group'>
+                <label>Password Confirmation:</label>
+                <input className='form-control' type='password' ref='passwordConfirmation' />
+              </div>
+              <input type="submit"/>
+            </form>
+          </div>  
         </div>
       </div>
     )

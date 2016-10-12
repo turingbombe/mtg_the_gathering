@@ -156,7 +156,6 @@ class CollectionSetsShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
-					<div className='panel-heading'>{this.props.collection.name}</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}

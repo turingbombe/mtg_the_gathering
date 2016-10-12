@@ -27,14 +27,16 @@ class NavigationBar extends React.Component{
   render(){
   	if (!this.props.logged_in){
 	  return (
-	    <Navbar inverse>
-	      <Navbar.Header>
-	      	<Navbar.Brand>
-	        	<Link to="/">Magic The Gathering: The Gathering</Link>
-	        </Navbar.Brand>
-	      </Navbar.Header>
+      <Navbar id='navbar'>
+        <Nav pullLeft>
+            <img src="http://i.imgur.com/Scbeiy2.png" height='45px' width='45px'></img>
+        </Nav>
+        <Navbar.Brand>
+          <Link id='navbrand' to="/">agic The Gathering: The Gathering</Link>
+        </Navbar.Brand>
+        <Nav><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></Nav>
 	      <Nav pullRight>
-  	      <NavDropdown eventKey={1} title="Menu" id="basic-nav-dropdown">
+  	      <NavDropdown id='navdrop' eventKey={1} title="Menu" id="basic-nav-dropdown">
   					<MenuItem eventKey={1.1}><Link to="/signup" className='Navbar-item'>Sign Up</Link></MenuItem>
   					<MenuItem eventKey={1.2}><Link to="/signin" className ='Navbar-item'>Sign In</Link></MenuItem>
   				</NavDropdown>
@@ -43,14 +45,16 @@ class NavigationBar extends React.Component{
 	  )
 	}else{
 	  return(
-	    <Navbar inverse>
-	      <Navbar.Header>
-	      	<Navbar.Brand>
-	        	<Link to="/">Magic The Gathering: The Gathering</Link>
-	        </Navbar.Brand>
-	      </Navbar.Header>
+	    <Navbar id='navbar'>
+        <Nav pullLeft>
+            <img src="http://i.imgur.com/Scbeiy2.png" height='45px' width='45px'></img>
+        </Nav>
+        <Navbar.Brand>
+          <Link id='navbrand' to="/">agic The Gathering: The Gathering</Link>
+        </Navbar.Brand>
+        <Nav><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></Nav>
 	      <Nav pullRight>
-		      <NavDropdown eventKey={1} title="Menu" id="basic-nav-dropdown">
+		      <NavDropdown id='navdrop' eventKey={1} title="Menu" id="basic-nav-dropdown">
 	          	<MenuItem eventKey={1.1}><p onClick={this.fetchCollection}>Your Profile</p></MenuItem>
 	          	<MenuItem eventKey={1.2}><Link to="/" onClick={this.logOut}>Log Out</Link></MenuItem>
 	          </NavDropdown>
