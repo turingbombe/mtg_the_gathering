@@ -3,7 +3,7 @@ import {Link, browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions';
-import {Navbar, Nav, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Navbar, Nav, NavDropdown, MenuItem, NavItem} from 'react-bootstrap';
 
 
 class NavigationBar extends React.Component{
@@ -34,7 +34,7 @@ class NavigationBar extends React.Component{
         <Navbar.Brand>
           <Link id='navbrand' to="/">agic The Gathering: The Gathering</Link>
         </Navbar.Brand>
-        <Nav><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></Nav>
+        <Nav><NavItem><Link id='navmulti' to="/cardsets">Enter The Multiverse</Link></NavItem></Nav>
 	      <Nav pullRight>
   	      <NavDropdown id='navdrop' eventKey={1} title="Menu" id="basic-nav-dropdown">
   					<MenuItem eventKey={1.1}><Link to="/signup" className='Navbar-item'>Sign Up</Link></MenuItem>
