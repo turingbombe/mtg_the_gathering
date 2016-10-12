@@ -16,7 +16,7 @@
     "redux-promise": "^0.5.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --history-api-fallback",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

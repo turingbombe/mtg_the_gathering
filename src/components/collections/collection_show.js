@@ -134,7 +134,7 @@ class CollectionSetsShow extends React.Component {
 				console.log("cardDisplay:", cardToShow)
 				return(
 					<div>
-						<div className="panel panel-default col-md-5 clearfix" onClick={()=>this.open(cardToShow)}>
+						<div className="panel panel-default col-md-5 clearfix" id='setpanel' onClick={()=>this.open(cardToShow)}>
 							<div className="panel-heading">{cardToShow.name}</div>
 							<div className="panel-body">
 								<div className='row'> {this.manaConverter(cardToShow.mana_cost)} | {cardToShow.rarity}</div>

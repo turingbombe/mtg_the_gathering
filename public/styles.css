@@ -1,6 +1,8 @@
+
 #sets_index {
   overflow: scroll;
   height: 500px;
+  font-family: 'IM Fell English', serif;
 }
 
 #set_cards {
@@ -18,16 +20,25 @@
 
 #navbrand {
   color: black;
+  font-size: 24px;
+  font-family: 'IM Fell English', serif;
 }
 
 #navmulti {
   color: black;
+  font-family: 'IM Fell English', serif;
 }
 
 .navbar-default .navbar-nav>li>a {
     color: black;
+    font-family: 'IM Fell English', serif;
 }
 
 #setlink {
   color: #c8c8c8;
+}
+
+#setpanel {
+  height: 92px;
+  margin-left: 37px;
 }
