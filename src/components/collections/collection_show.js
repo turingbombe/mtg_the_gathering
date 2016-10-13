@@ -198,12 +198,12 @@ class CollectionSetsShow extends React.Component {
 
 function mapStateToProps(state, ownProps){
 		console.log("collection show mstp:", state)
-		if(state.collections.length > 0 && state.decks.length > 0){
-			const collection_match = state.collections.find(collection => {return collection.user_id == ownProps.params.id} )
+		if(state.collections.length > 0 && state.decks.length > 0 && state.collections.length > 0){
+			const collection_match = state.collections.find(collection => {return collection.user_id == ownProps.params.collectionId} )
 			console.log("collection show collection:", collection_match)
-			const decks_match = state.decks.find(deck => {return deck.collection_id == collection_match.id})
+			const decks_match = state.decks.filter(deck => {return deck.collection_id == collection_match.id})
 			console.log("decks show:", decks_match)
-			return {collection: collection_match, decks: [decks_match]}
+			return {collection: collection_match, decks: decks_match}
 		}else{
 			return {collection: {"id":2,"name":"Gathering Charlie","card_ids":[2312,2313],"user_id":2,"decks":[{"id":2,"name":"Your first deck","description":"An empty deck to get you started!","card_ids":[],"collection_id":2}],"cards":[{"id":2312,"cmc":6,"colors":["Blue"],"flavor":"\"When one has witnessed the unspeakable, 'tis sometimes better to forget.\" —Vervamon the Elder","image_url":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1746\u0026type=card","mana_cost":["3","U","U","U"],"name":"Amnesia","original_text":"Look at target player's hand. Target player discards all non-land cards in his or her hand.","original_type":null,"power":null,"rarity":"Uncommon","set_name":null,"card_text":"Target player reveals his or her hand and discards all nonland cards.","toughness":null,"card_type":null,"card_set_id":10},{"id":2313,"cmc":4,"colors":["White"],"flavor":null,"image_url":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1801\u0026type=card","mana_cost":["2","W","W"],"name":"Angry Mob","original_text":"Trample\nDuring your turn, the *s below are both equal to the total number of swamps all opponents control. During any other player's turn, * equals 0.","original_type":null,"power":"2+*","rarity":"Uncommon","set_name":null,"card_text":"Trample\nAs long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control. As long as it's not your turn, Angry Mob's power and toughness are each 2.","toughness":"2+*","card_type":null,"card_set_id":10}]},decks: [{name:"Loading", id:2}]}
 		}

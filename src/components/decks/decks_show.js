@@ -192,7 +192,7 @@ class DeckShow extends React.Component {
 function mapStateToProps(state, ownProps){
 		console.log("deck show mstp:", state)
 		if(state.decks.length > 0){
-			const deck_match = state.decks.find(deck => {return deck.id == ownProps.params.id} )
+			const deck_match = state.decks.find(deck => {return deck.id == ownProps.params.deckId} )
 			console.log("deck_match?", deck_match)
 			const collection = state.collections.find(collection => {return deck_match.collection_id == collection.id})
 			const cards_match = collection.cards.filter(card => {return deck_match.card_ids.includes(card.id)})

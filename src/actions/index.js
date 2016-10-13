@@ -153,3 +153,17 @@ export function fetchDecks(){
     payload: decks
   }  
 }
+
+export function createDeck(newDeck){
+  const freshDeck = fetch('http://localhost:3000/api/v1/decks/', {
+    method: 'POST',
+    headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+    body: JSON.stringify({deck: newDeck})
+    }).then(response => {
+      return response.json();
+    }).catch(error => {
+      return error;
+    });
+
+    return {type: 'NEW_DECK', payload: freshDeck}
+}
