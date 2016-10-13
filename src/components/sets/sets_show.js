@@ -177,12 +177,14 @@ class CardSetsShow extends React.Component {
 						<div>
 			        <Modal show={this.state.showModal} onHide={this.close}>
 			          <Modal.Header closeButton>
+									<div style={{display:'inline'}}>
 			            <Modal.Title>{this.state.card.name}</Modal.Title>
+									{this.props.logged_in ? <button className="btn-default btn-sm" onClick={()=>this.addCollection(this.state.card.id)}>Add to your Collection</button> : <p>Sign Up to start your collection</p> }
+									</div>
 			          </Modal.Header>
 			          <Modal.Body>
 									<div className='col-xs-6'>
 			      				<img src={this.state.card.image_url} className='img-responsive' />
-			      				{this.props.logged_in ? <button className="btn-default btn-sm" onClick={()=>this.addCollection(this.state.card.id)}>Add to your Collection</button> : <p>Sign Up to start your collection</p> }
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>

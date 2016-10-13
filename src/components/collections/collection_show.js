@@ -161,7 +161,7 @@ class CollectionSetsShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
-					<div className='panel-heading'>Collection</div>
+					<div className='panel-heading'>My Collection</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}
@@ -170,15 +170,17 @@ class CollectionSetsShow extends React.Component {
 						<div>
 			        <Modal show={this.state.showModal} onHide={this.close}>
 			          <Modal.Header closeButton>
-			            <Modal.Title>{this.state.card.name}</Modal.Title>
-			          </Modal.Header>
-			          <Modal.Body>
-							<div className='col-xs-6'>
-			      				<img src={this.state.card.image_url} className='img-responsive' />
-			      				<DropdownButton bsStyle='default' title='Add Card To Deck'>
+			            <Modal.Title>
+										{this.state.card.name}
+										<DropdownButton bsStyle='default' title='Add Card To Deck'>
 									{this.props.decks.map(deck => <MenuItem onClick={()=> this.addToDeck(this.state.card.id,deck.id)}>{deck.name}</MenuItem>)}
 			      				</DropdownButton>
-										<Button onClick={()=>this.removeFromCollection(this.state.card.id)}>remove from collection</Button>
+										<Button class="btn btn-sm" onClick={()=>this.removeFromCollection(this.state.card.id)}>remove from collection</Button>
+									</Modal.Title>
+			          </Modal.Header>
+			          <Modal.Body>
+									<div className='col-xs-6'>
+			      				<img src={this.state.card.image_url} className='img-responsive' />
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
