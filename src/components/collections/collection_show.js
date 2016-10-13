@@ -17,6 +17,7 @@ class CollectionSetsShow extends React.Component {
 		this.close = this.close.bind(this)
 		this.manaConverter = this.manaConverter.bind(this)
 		this.addToDeck = this.addToDeck.bind(this)
+		this.removeFromCollection = this.removeFromCollection.bind(this)
 		this.state = {
 			filterColor: "All",
 			filterRarity: "All",
@@ -112,6 +113,10 @@ class CollectionSetsShow extends React.Component {
 		this.props.actions.addCardToDeck(card_id,deck_id)
 	}
 
+	removeFromCollection(id){
+		this.props.actions.removeFromCollection(id)
+	}
+
 	filteredCards(){
 		if (this.state.filterColor === "All" && this.state.filterRarity === "All") {
 			return this.props.collection.cards
@@ -156,6 +161,7 @@ class CollectionSetsShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
+					<div className='panel-heading'>Collection</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}
@@ -172,6 +178,7 @@ class CollectionSetsShow extends React.Component {
 			      				<DropdownButton bsStyle='default' title='Add Card To Deck'>
 									{this.props.decks.map(deck => <MenuItem onClick={()=> this.addToDeck(this.state.card.id,deck.id)}>{deck.name}</MenuItem>)}
 			      				</DropdownButton>
+										<Button onClick={()=>this.removeFromCollection(this.state.card.id)}>remove from collection</Button>
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
@@ -180,7 +187,7 @@ class CollectionSetsShow extends React.Component {
 			      					<li className='list-group-item'>CMC: {this.state.card.cmc}</li>
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
-			                		<li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
+			                <li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
 			      				</ul>
 			      			</div>
 

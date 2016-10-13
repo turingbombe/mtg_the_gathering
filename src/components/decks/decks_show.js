@@ -16,6 +16,7 @@ class DeckShow extends React.Component {
 		this.open = this.open.bind(this)
 		this.close = this.close.bind(this)
 		this.manaConverter = this.manaConverter.bind(this)
+		this.removeFromDeck = this.removeFromDeck.bind(this)
 		this.state = {
 			filterColor: "All",
 			filterRarity: "All",
@@ -81,6 +82,10 @@ class DeckShow extends React.Component {
 		return cost.map(mana =>{
 			return <img src={that.imagePaths()[mana]} height='25px' width='25px' />
 		})
+	}
+
+	removeFromDeck(card_id, deck_id){
+		this.props.actions.removeFromDeck(card_id,deck_id)
 	}
 
 	filter(){
@@ -153,6 +158,7 @@ class DeckShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
+					<div className='panel-heading'> Deck</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}
@@ -161,12 +167,17 @@ class DeckShow extends React.Component {
 						<div>
 			        <Modal show={this.state.showModal} onHide={this.close}>
 			          <Modal.Header closeButton>
-			            <Modal.Title>{this.state.card.name}</Modal.Title>
+			            <Modal.Title>
+										{this.state.card.name}
+										<Button onClick={()=>this.removeFromDeck(this.state.card.id, this.props.deck.id)}>Remove From Deck</Button>
+
+			            </Modal.Title>
 			          </Modal.Header>
 			          <Modal.Body>
-							<div className='col-xs-6'>
+									<div className='col-xs-6'>
 			      				<img src={this.state.card.image_url} className='img-responsive' />
 			      			</div>
+
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
 			      					<li className='list-group-item'>Rarity: {this.state.card.rarity}</li>
@@ -174,7 +185,7 @@ class DeckShow extends React.Component {
 			      					<li className='list-group-item'>CMC: {this.state.card.cmc}</li>
 			      					<li className='list-group-item'>Power: {this.state.card.power}</li>
 			      					<li className='list-group-item'>Toughness: {this.state.card.toughness}</li>
-			                		<li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
+			                <li className='list-group-item'>Flavor: {this.state.card.flavor}</li>
 			      				</ul>
 			      			</div>
 

@@ -138,8 +138,35 @@ export function addCardToDeck(card_id,deck_id){
   }).catch(error => {
     return error;
   });
+	return{type: 'ADD_CARD_TO_DECK', payload:updatedCollectionDeck}
+}
 
-  return {type: 'ADD_CARD_TO_DECK', payload:updatedCollectionDeck}
+export function removeFromCollection(card_id){
+	const updatedCollection = fetch(`http://localhost:3000/api/v1/ownerships/${card_id}`, {
+  method: 'PATCH',
+  headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+  body: JSON.stringify({card_id: card_id})
+	}).then(response => {
+    return response.json();
+  }).catch(error => {
+    return error;
+  });
+
+  return {type:'REMOVE_CARD_FROM_COLLECTION', payload: updatedCollection}
+}
+
+export function removeFromDeck(card_id,deck_id){
+  const updatedCollectionDeck = fetch(`http://localhost:3000/api/v1/decks/${deck_id}`, {
+  method: 'PATCH',
+  headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
+  body: JSON.stringify({card_id: card_id,deck_id: deck_id})
+  }).then(response => {
+    return response.json();
+  }).catch(error => {
+    return error;
+  });
+	console.log("removeFromDeck Action", updatedCollectionDeck)
+	return{type: 'REMOVE_CARD_FROM_DECK', payload:updatedCollectionDeck}
 }
 
 export function fetchDecks(){
@@ -151,5 +178,5 @@ export function fetchDecks(){
   return {
     type: 'FETCH_DECKS',
     payload: decks
-  }  
+  }
 }
