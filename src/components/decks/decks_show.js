@@ -158,7 +158,7 @@ class DeckShow extends React.Component {
 		return(
 			<div>
 				<div className='panel panel-default col-md-12'>
-					<div className='panel-heading'> Deck</div>
+					<div className='panel-heading'>{this.props.deck.name}</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>
 							{this.cardDisplay()}
@@ -169,7 +169,7 @@ class DeckShow extends React.Component {
 			          <Modal.Header closeButton>
 			            <Modal.Title>
 										{this.state.card.name}
-										<Button onClick={()=>this.removeFromDeck(this.state.card.id, this.props.deck.id)}>Remove From Deck</Button>
+										<Button class="btn btn-primary" onClick={()=>this.removeFromDeck(this.state.card.id, this.props.deck.id)}>Remove From Deck</Button>
 
 			            </Modal.Title>
 			          </Modal.Header>

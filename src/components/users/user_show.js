@@ -15,9 +15,15 @@ class UserShow extends React.Component {
           <div className='panel-heading'>Your Collection & Decks</div>
           <div className='panel-body' id="sets_index">
           <ul>
-            <li><Link to={`/users/${this.props.collection.id}/decks/new`}> Create A New Deck </Link></li>
-            <li><Link to={`/users/${this.props.collection.id}/collections/${this.props.collection.id}`}> Your Collection </Link></li>
-            {this.props.decks.map(deck => <li> <Link to={`/users/${this.props.collection.user_id}/decks/${deck.id}`}>{deck.name}</Link></li>)}
+            <li><Link to={`/users/${this.props.collection.id}/collections/${this.props.collection.id}`}>Your Collection</Link>
+              <ul>
+              {this.props.decks.map(deck =>
+                <li> <Link to={`/users/${this.props.collection.user_id}/decks/${deck.id}`}>{deck.name}</Link></li>
+              )}
+              <li><Link style={{color:'#e79e58'}}to={`/users/${this.props.collection.id}/decks/new`}> Create A New Deck </Link></li>
+              </ul>
+
+            </li>
           </ul>
           </div>
         </div>

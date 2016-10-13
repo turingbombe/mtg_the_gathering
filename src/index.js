@@ -15,8 +15,9 @@ const store = createStore(rootReducer, applyMiddleware(ReduxPromise))
 
 store.dispatch(fetchCards())
 store.dispatch(fetchUsers())
-store.dispatch(fetchCardSets())
 store.dispatch(fetchDecks())
+store.dispatch(fetchCardSets())
+
 
 ReactDOM.render(
   <Provider store={store}>
