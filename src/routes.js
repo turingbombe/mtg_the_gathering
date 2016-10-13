@@ -9,6 +9,7 @@ import UserShow from './components/users/user_show'
 import SetsIndex from './components/sets/sets_index'
 import CardSetsShow from './components/sets/sets_show'
 import CollectionsShow from './components/collections/collection_show'
+import DeckShow from './components/decks/decks_show'
 
 
 export default (
@@ -19,6 +20,7 @@ export default (
 		</Route>
 		<Route path="/users/:id" component={UserShow} >
 			<Route path="/collections/:id" component={CollectionsShow} />
+			<Route path="/decks/:id" component={DeckShow} />
 		</Route>
 		<Route path="/signup" component={SignUp} />
 		<Route path="/signin" component={SignIn} />

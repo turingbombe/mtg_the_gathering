@@ -16,7 +16,7 @@ class UserShow extends React.Component {
           <div className='panel-body' id="sets_index">
           <ul>
             <li><Link to={`/collections/${this.props.collection.id}`}> Your Collection </Link></li>
-            {this.props.collection.decks.map(deck => <li> <Link to={`/collections/${deck.id}`}>{deck.name}</Link></li>)}
+            {this.props.collection.decks.map(deck => <li> <Link to={`/decks/${deck.id}`}>{deck.name}</Link></li>)}
           </ul>
           </div>
         </div>
