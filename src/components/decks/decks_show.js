@@ -109,11 +109,11 @@ class DeckShow extends React.Component {
 
 	filteredCards(){
 		if (this.state.filterColor === "All" && this.state.filterRarity === "All") {
-			console.log("filteredCards()",this.props.deck.cards)
-			return this.props.deck.cards
+			console.log("filteredCards()",this.props.cards)
+			return this.props.cards
 		}
 		else {
-			return this.props.deck.cards.filter(card=>{
+			return this.props.cards.filter(card=>{
 				if (this.state.filterColor != "All" && this.state.filterRarity === "All") {
 					if (card.colors){
 						return card.colors.includes(this.state.filterColor)
@@ -166,9 +166,6 @@ class DeckShow extends React.Component {
 			          <Modal.Body>
 							<div className='col-xs-6'>
 			      				<img src={this.state.card.image_url} className='img-responsive' />
-			      				<DropdownButton bsStyle='default' title='Add Card To Deck'>
-									{this.props.deck.decks.map(deck => <MenuItem onClick={()=> this.addToDeck(this.state.card.id,deck.id)}>{deck.name}</MenuItem>)}
-			      				</DropdownButton>
 			      			</div>
 			      			<div className='col-xs-6'>
 			      				<ul className='list-group'>
@@ -196,8 +193,11 @@ function mapStateToProps(state, ownProps){
 		console.log("deck show mstp:", state)
 		if(state.decks.length > 0){
 			const deck_match = state.decks.find(deck => {return deck.id == ownProps.params.id} )
-			console.log("deck show deck:", deck_match)
-			return {deck: deck_match}
+			console.log("deck_match?", deck_match)
+			const collection = state.collections.find(collection => {return deck_match.collection_id == collection.id})
+			const cards_match = collection.cards.filter(card => {return deck_match.card_ids.includes(card.id)})
+			console.log("mstp:",cards_match)
+			return {deck: deck_match, cards: cards_match}
 		}else{
 			return {"id":2,"name":"Gathering Charlie","card_ids":[2312,2313],"user_id":2,"decks":[{"id":2,"name":"Your first deck","description":"An empty deck to get you started!","card_ids":[],"deck_id":2}],"cards":[{"id":2312,"cmc":6,"colors":["Blue"],"flavor":"\"When one has witnessed the unspeakable, 'tis sometimes better to forget.\" —Vervamon the Elder","image_url":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1746\u0026type=card","mana_cost":["3","U","U","U"],"name":"Amnesia","original_text":"Look at target player's hand. Target player discards all non-land cards in his or her hand.","original_type":null,"power":null,"rarity":"Uncommon","set_name":null,"card_text":"Target player reveals his or her hand and discards all nonland cards.","toughness":null,"card_type":null,"card_set_id":10},{"id":2313,"cmc":4,"colors":["White"],"flavor":null,"image_url":"http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1801\u0026type=card","mana_cost":["2","W","W"],"name":"Angry Mob","original_text":"Trample\nDuring your turn, the *s below are both equal to the total number of swamps all opponents control. During any other player's turn, * equals 0.","original_type":null,"power":"2+*","rarity":"Uncommon","set_name":null,"card_text":"Trample\nAs long as it's your turn, Angry Mob's power and toughness are each equal to 2 plus the number of Swamps your opponents control. As long as it's not your turn, Angry Mob's power and toughness are each 2.","toughness":"2+*","card_type":null,"card_set_id":10}]}
 		}

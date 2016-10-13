@@ -6,6 +6,7 @@ import sessionsReducer from './sessions_reducer';
 import collectionReducer from './collection_reducer';
 import searchReducer from './search_reducer';
 import errorsReducer from './errors_reducer';
+import decksReducer from './decks_reducer'
 
 const rootReducer =  combineReducers({
   cards: cardsReducer,
@@ -13,7 +14,8 @@ const rootReducer =  combineReducers({
   cardsets: cardSetsReducer,
   sessions: sessionsReducer,
   collections: collectionReducer,
-  search: searchReducer
+  search: searchReducer,
+  decks: decksReducer
 });
 
 export default rootReducer;
