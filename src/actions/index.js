@@ -141,3 +141,15 @@ export function addCardToDeck(card_id,deck_id){
 
   return {type: 'ADD_CARD_TO_DECK', payload:updatedCollectionDeck}
 }
+
+export function fetchDecks(){
+  const decks = fetch(`${BASE_URL}/decks/`).then(response =>{
+      return response.json();
+    }).then(decksPayload =>{
+      return decksPayload;
+    })
+  return {
+    type: 'FETCH_DECKS',
+    payload: decks
+  }  
+}
