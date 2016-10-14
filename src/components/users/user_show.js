@@ -11,7 +11,7 @@ class UserShow extends React.Component {
   render(){
     return (
       <div>
-        <div className='panel panel-default col-md-4' >
+        <div className='panel panel-default col-md-4' id='show' >
           <div className='panel-heading'>Your Collection & Decks</div>
           <div className='panel-body' id="sets_index">
           <ul>

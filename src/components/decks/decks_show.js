@@ -157,7 +157,7 @@ class DeckShow extends React.Component {
 	render(){
 		return(
 			<div>
-				<div className='panel panel-default col-md-12'>
+				<div className='panel panel-default col-md-12' id='show'>
 					<div className='panel-heading'>{this.props.deck.name}</div>
 					<div className='panel-heading'> {this.filter()} </div>
 						<div className="panel-body" id='set_cards'>

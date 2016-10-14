@@ -1,13 +1,13 @@
 
 #sets_index {
   overflow: scroll;
-  height: 500px;
+  height: 460px;
   font-family: 'IM Fell English', serif;
 }
 
 #set_cards {
   overflow: scroll;
-  height: 500px;
+  height: 460px;
 }
 
 #html_body {
@@ -41,4 +41,16 @@
 #setpanel {
   height: 92px;
   margin-left: 37px;
+}
+
+#show {
+  height: 580px;
+}
+
+#four {
+  height: 460;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  background-image: linear-gradient(#706d6d, #fcfcfc 40%, #eeeeee);
 }
