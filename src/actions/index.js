@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000/api/v1'
+const BASE_URL = 'https://polar-woodland-17412.herokuapp.com/api/v1'
 
 export function fetchCard(id){
 	const card = fetch(`${BASE_URL}/cards/${id}`).then(response =>{
@@ -13,7 +13,7 @@ export function fetchCard(id){
 }
 
 export function searchCard(searchTerm){
-  const searchCard = fetch('http://localhost:3000/api/v1/searches', {
+  const searchCard = fetch(`${BASE_URL}/searches`, {
     method: 'POST',
     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify({search: searchTerm})
@@ -52,7 +52,7 @@ export function fetchCards(){
 }
 
 export function signIn(userInfo){
-  const loggedInUser = fetch('http://localhost:3000/api/v1/sessions', {
+  const loggedInUser = fetch(`${BASE_URL}/sessions`, {
     method: 'POST',
     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify({auth: userInfo})
@@ -67,7 +67,7 @@ export function signIn(userInfo){
 }
 
 export function newUser(newUserInfo) {
-  const newUser = fetch('http://localhost:3000/api/v1/users', {
+  const newUser = fetch(`${BASE_URL}/users`, {
     method: 'POST',
     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify({user: newUserInfo})
@@ -101,7 +101,7 @@ export function fetchUsers(){
 }
 
 export function addCardToCollection(card_id){
-	const updatedCollection = fetch('http://localhost:3000/api/v1/ownerships/', {
+	const updatedCollection = fetch(`${BASE_URL}/ownerships/`, {
     method: 'POST',
     headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify({card_id: card_id})
@@ -115,7 +115,7 @@ export function addCardToCollection(card_id){
 }
 
 export function getUserCollection(user_id){
-	const userCollecition = fetch(`http://localhost:3000/api/v1/ownerships/${user_id}`, {
+	const userCollecition = fetch(`${BASE_URL}/ownerships/${user_id}`, {
     method: 'GET',
     headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
   	}).then(response => {
@@ -129,7 +129,7 @@ export function getUserCollection(user_id){
 
 export function addCardToDeck(card_id,deck_id){
   console.log("Add card to deck:",card_id,deck_id)
-  const updatedCollectionDeck = fetch(`http://localhost:3000/api/v1/card_decks/${deck_id}`, {
+  const updatedCollectionDeck = fetch(`${BASE_URL}/card_decks/${deck_id}`, {
   method: 'PATCH',
   headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
   body: JSON.stringify({card_id: card_id,deck_id: deck_id})
@@ -142,7 +142,7 @@ export function addCardToDeck(card_id,deck_id){
 }
 
 export function removeFromCollection(card_id){
-	const updatedCollection = fetch(`http://localhost:3000/api/v1/ownerships/${card_id}`, {
+	const updatedCollection = fetch(`${BASE_URL}/ownerships/${card_id}`, {
   method: 'PATCH',
   headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
   body: JSON.stringify({card_id: card_id})
@@ -156,7 +156,7 @@ export function removeFromCollection(card_id){
 }
 
 export function removeFromDeck(card_id,deck_id){
-  const updatedCollectionDeck = fetch(`http://localhost:3000/api/v1/decks/${deck_id}`, {
+  const updatedCollectionDeck = fetch(`${BASE_URL}/decks/${deck_id}`, {
   method: 'PATCH',
   headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
   body: JSON.stringify({card_id: card_id,deck_id: deck_id})
@@ -182,7 +182,7 @@ export function fetchDecks(){
 }
 
 export function createDeck(newDeck){
-  const freshDeck = fetch('http://localhost:3000/api/v1/decks/', {
+  const freshDeck = fetch(`${BASE_URL}/decks/`, {
     method: 'POST',
     headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`, 'Accept': 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify({deck: newDeck})
