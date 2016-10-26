@@ -175,7 +175,6 @@ class CollectionSetsShow extends React.Component {
 										<DropdownButton bsStyle='default' title='Add Card To Deck'>
 									{this.props.decks.map(deck => <MenuItem onClick={()=> this.addToDeck(this.state.card.id,deck.id)}>{deck.name}</MenuItem>)}
 			      				</DropdownButton>
-										<Button class="btn btn-sm" onClick={()=>this.removeFromCollection(this.state.card.id)}>remove from collection</Button>
 									</Modal.Title>
 			          </Modal.Header>
 			          <Modal.Body>
