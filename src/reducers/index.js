@@ -5,7 +5,6 @@ import cardSetsReducer from './cardsets_reducer';
 import sessionsReducer from './sessions_reducer';
 import collectionReducer from './collection_reducer';
 import searchReducer from './search_reducer';
-import errorsReducer from './errors_reducer';
 import decksReducer from './decks_reducer'
 
 const rootReducer =  combineReducers({

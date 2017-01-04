@@ -14,7 +14,6 @@ class NavigationBar extends React.Component{
    }
 
    fetchCollection(){
-   	console.log("collection:",sessionStorage.current_user)
    	this.props.actions.getUserCollection(sessionStorage.current_user).then(()=> browserHistory.push(`/users/${sessionStorage.current_user}`))
    }
 

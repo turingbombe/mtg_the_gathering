@@ -8,13 +8,11 @@ class DeckNew extends React.Component{
 	constructor(){
 		super()
 		this.newDeckHandler = this.newDeckHandler.bind(this)
-		
 	}
 
 	newDeckHandler(event){
 		event.preventDefault()
 		let newDeck = {name: this.refs.deckName.value, description: this.refs.deckDesc.value}
-		console.log("new deck:",newDeck)
 		this.props.actions.createDeck(newDeck)
 	}
 	render(){
@@ -33,7 +31,7 @@ class DeckNew extends React.Component{
 	               </div>
 	              <input type="submit"/>
 	            </form>
-	          </div>  
+	          </div>
 	        </div>
 	      </div>
 		)
